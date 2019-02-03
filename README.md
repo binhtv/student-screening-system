@@ -16,4 +16,4 @@ MEAN Stack
 ![Angular!](https://user-images.githubusercontent.com/7671024/52155533-f0be1280-2648-11e9-9005-5d6c8e4a5cc7.png "Angular")
 ![Redux](https://user-images.githubusercontent.com/7671024/52170699-c6d22200-2714-11e9-8a9b-62a0a9eaa9d9.png "Redux")
 ## How to build & run
-tbd
+To be defined later
