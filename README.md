@@ -1,4 +1,4 @@
-# Mordern Web Applications CS572 - Final Project
+# Modern Web Applications CS572 - Final Project
 
 
 ## Student Screening System
