@@ -58,7 +58,8 @@ async function sendEmail() {
 
 }
 router.route('/send-email')
-	.get((req, resp) => {
+	.post((req, resp) => {
+		const data = req.body;
 		sendEmail();
 		resp.status(200).json(1);
 	});

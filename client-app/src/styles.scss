@@ -99,3 +99,10 @@ body {
     padding-left: 0;
   }
 }
+
+.ng-touched.ng-invalid {
+	border-color: #dc3545;
+}
+.error {
+	color: #dc3545;
+}
