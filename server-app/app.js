@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const studentsRouter = require('./routes/students');
 
 dotenv.config();
 const {
@@ -37,5 +38,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/students', studentsRouter)
 
 module.exports = app;

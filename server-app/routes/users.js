@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { check, validationResult } = require('express-validator/check');
 const User = require("./../models/user");
-const checkAuth = require('./../middleware/check-authentication');
+const checkAuth = require('./../middlewares/check-authentication');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
