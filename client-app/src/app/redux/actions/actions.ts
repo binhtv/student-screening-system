@@ -1,10 +1,12 @@
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-	ADD_CAMPAIGNS = 'ADD_CAMPAIGNS'
+	STAFF_LOAD_STUDENTS = 'STAFF_LOAD_STUDENTS'
 }
 
-export class AddCampaign implements Action {
-	readonly type = ActionTypes.ADD_CAMPAIGNS;
-	constructor(public payload: any[]) {}
+export class LoadStudents implements Action {
+	readonly type = ActionTypes.STAFF_LOAD_STUDENTS;
+	constructor(public readonly payload: any[]) {}
 }
+
+export type AppActions = LoadStudents;

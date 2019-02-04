@@ -1,3 +1,6 @@
 export interface AppStore {
-    campaigns: any[];
+    admin: any,
+    staff: { students: any[] },
+    student: any[],
+    campaigns: any[],
 }

@@ -6,22 +6,18 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { reducers } from './redux/reducers/index.reducer';
-import { StudentModule } from './student/student.module';
-import { StaffModule } from './staff/staff.module';
-import { AdminModule } from './admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
-    AppRoutingModule,
-    AdminModule,
-    StaffModule,
-    StudentModule    
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

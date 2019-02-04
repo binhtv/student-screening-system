@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let student of students|async">
+    {{student.email}}
+    <input type="checkbox">
+  </li>
+</ul>
+<button (click)="sendSampleEmail()">Send</button>

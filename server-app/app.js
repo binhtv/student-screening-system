@@ -4,10 +4,12 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const studentsRouter = require('./routes/students');
+const staffsRouter = require('./routes/staffs');
 
 dotenv.config();
 const {
@@ -36,8 +38,10 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('*', cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/students', studentsRouter)
+app.use('/staffs', staffsRouter);
 
 module.exports = app;

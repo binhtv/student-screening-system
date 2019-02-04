@@ -1,5 +1,5 @@
-import { campaigns } from './campaign.reducer';
+import { staff } from './staff.reducer';
 
 export const reducers = {
-	campaigns
+	staff
 }
