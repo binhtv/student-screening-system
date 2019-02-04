@@ -1,28 +1,32 @@
 import { NgModule } from '@angular/core';
-import { LoginComponent } from './login/login.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import {
-  FormBuilder,
-  FormArray,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { CreatingExamComponent } from './create-question/creating-question.component';
+import { ManagingStaffComponent } from './managing-staff/managing-staff.component';
+import { routing } from './adminRoutes';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
-  declarations:
-  [
-    LoginComponent
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    routing,
+    FormsModule
   ],
-	imports: [CommonModule, RouterModule.forChild([
-		{ path: '', component: LoginComponent },
-		{ path: 'login', component: LoginComponent }
-	])],
-	providers: [
-
+  declarations: [
+    EvaluationComponent,
+    CreatingExamComponent,
+   // ManagingStaffComponent,
+    AdminhomeComponent,
+    AdminLoginComponent
   ],
-	bootstrap: []
+  exports: [
+    EvaluationComponent,
+    CreatingExamComponent,
+  //  ManagingStaffComponent
+  ]
 })
 export class AdminModule { }
 

@@ -4,10 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffService } from '../shared/services/staff.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [InvitationComponent, DashboardComponent],
-	imports: [CommonModule, RouterModule.forChild([
+	imports: [CommonModule, 
+		ReactiveFormsModule,
+		RouterModule.forChild([
 		{ path: '', component: DashboardComponent },
 		{ path: 'invite', component: InvitationComponent }
 	])],
