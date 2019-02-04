@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const studentsRouter = require('./routes/students');
 const staffsRouter = require('./routes/staffs');
+const adminsRouter = require('./routes/admin');
 
 dotenv.config();
 const {
@@ -43,5 +44,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/students', studentsRouter)
 app.use('/staffs', staffsRouter);
+app.use('/admin', adminsRouter);
 
 module.exports = app;

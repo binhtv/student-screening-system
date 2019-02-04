@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'student', loadChildren: './student/student.module#StudentModule' },
   { path: 'staff', loadChildren: './staff/staff.module#StaffModule' },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
 ];
 
 @NgModule({

@@ -1,0 +1,47 @@
+<form style="margin: auto; width: 50%;" class="form-horizontal" [formGroup]="questionForm"
+  (ngSubmit)="CreateQuestion()">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Question Title</label>
+    <input formControlName="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Quetion Title">
+    <div *ngIf="title.errors && title.errors.required && (title.dirty || title.touched)" class="error">
+      Question title is required!
+    </div>
+    <div *ngIf="title.errors && title.errors.minlength && (title.dirty || title.touched)" class="error">
+      Question title min length is 5
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example Quetion</label>
+    <textarea formControlName="question" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <div *ngIf="question.errors && question.errors.required && (question.dirty || question.touched)" class="error">
+      Question title is required!
+    </div>
+    <div *ngIf="question.errors && question.errors.minlength && (question.dirty || question.touched)" class="error">
+      Question question min length is 20
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!questionForm.valid">Create Question</button>
+</form>
+
+
+<section style="width:80%; margin:auto">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Question Title</th>
+        <th>Question Number</th>
+        <th> Question</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let question of examQeustions'>
+        <td>{{ question.title }}</td>
+        <td>{{question.examnumber }}</td>
+        <td style="width: 700px">{{ question.question }}</td>
+        <td><button type="submit" style="width: 100px" class="btn btn-primary" (click)='[deletExam(question.examnumber)]'>Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
