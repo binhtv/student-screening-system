@@ -7,8 +7,13 @@
         <li><a routerLink="/">Home</a></li>
 
         <li *ngIf="userIsAuthenticated && isRole===1" class="dropdown">
-          <a [routerLink]="['admin']" class="dropdown-toggle" data-toggle="dropdown">Admin
+          <a class="dropdown-toggle" data-toggle="dropdown">Admin
           <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+              <li><a [routerLink]="['admin']">Admin</a></li>
+              <li><a [routerLink]="['admin']">Add Staff</a></li>
+              <li><a [routerLink]="['staff']">View Staff</a></li>
+            </ul>
         </li>
 
         <li *ngIf="userIsAuthenticated && isRole===2" class="dropdown">
@@ -31,13 +36,12 @@
           <li *ngIf="!userIsAuthenticated"> <a [routerLink]="['admin', 'login']"> <span class="glyphicon glyphicon-log-in"></span> Login</a> </li>
           <li *ngIf="userIsAuthenticated"> <a routerLink="/logout" (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
+
     </div>
 
     <!-- <div class="centered">
       <img src="assets/img/welcome.jpg" alt='welcome' id="bg">
     </div> -->
-
-
   </nav>
 
   <router-outlet></router-outlet>
