@@ -24,7 +24,7 @@ export class AdminService {
     return this.request(question);
   }
 exam: Question[] = []; 
-  public getExams() {
+  public getQuestions() {
     
     this.http.get<any>('http://localhost:8000/exam').subscribe((res) => {
       res.forEach(element => {

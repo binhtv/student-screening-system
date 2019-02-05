@@ -2,7 +2,7 @@
   (ngSubmit)="CreateQuestion()">
   <div class="form-group">
     <label for="exampleFormControlInput1">Question Title</label>
-    <input formControlName="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Quetion Title">
+    <input formControlName="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Question Title">
     <div *ngIf="title.errors && title.errors.required && (title.dirty || title.touched)" class="error">
       Question title is required!
     </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example Quetion</label>
+    <label for="exampleFormControlTextarea1">Example Question</label>
     <textarea formControlName="question" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     <div *ngIf="question.errors && question.errors.required && (question.dirty || question.touched)" class="error">
       Question title is required!
@@ -29,10 +29,9 @@
     <thead>
       <tr>
         <th>Question Title</th>
-        <th>Question Number</th>
-        <th> Question</th>
+        <th>Question Description</th>
+        <th>Status</th>
         <th>Action</th>
-
       </tr>
     </thead>
     <tbody>
