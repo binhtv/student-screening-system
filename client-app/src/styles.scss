@@ -101,7 +101,7 @@ body {
 }
 
 .ng-touched.ng-invalid {
-	border-color: #dc3545;
+	border-color: #dc3545 !important;
 }
 .error {
 	color: #dc3545;

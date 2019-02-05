@@ -29,8 +29,8 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li> <a [routerLink]="['admin', 'login']"> <span class="glyphicon glyphicon-log-in"></span> Login</a> </li>
-          <li><a routerLink="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          <li *ngIf="!userIsAuthenticated"> <a [routerLink]="['admin', 'login']"> <span class="glyphicon glyphicon-log-in"></span> Login</a> </li>
+          <li *ngIf="userIsAuthenticated"> <a routerLink="/logout" (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </nav>

@@ -11,32 +11,6 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-// User sign up
-router.post('/signup', function(req, res, next) {
-  bcrypt.hash(req.body.password, 10).then(password => {
-
-    const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: password
-    });
-
-    user.save()
-      .then(result => {
-        res.status(201).json({
-          message: "User created!",
-          result: result
-        });
-      })
-      .catch(err => {
-        res.status(500).json({
-          error: err
-        });
-      });
-  });
-});
-
 // User Login 
 router.post('/login', function(req, res, next) {
   let fetchUser;
@@ -47,6 +21,7 @@ router.post('/login', function(req, res, next) {
                 message: 'Auth Failed'
               });
             }
+            console.log(user);
             fetchUser = user;
             return bcrypt.compare(req.body.password, user.password);
           })
@@ -60,12 +35,15 @@ router.post('/login', function(req, res, next) {
               const token = jwt.sign(
                   {email: fetchUser.email, userId: fetchUser._id},
                   "jfjsLJKLJ#JK28499*HFHHFl4&&48934hkHF8457Y48jHKJK#4797234",
-                  { expiresIn: "2h" }
+                  { expiresIn: "1h" }
               );
 
               res.status(200).json({
+                userId: fetchUser._id,
                 token: token,
-                message: 'Successfully Login'
+                expiresIn: 3600,
+                message: 'Successfully Login',
+                role: fetchUser.role
               });
           })
           .catch(error => {
@@ -74,21 +52,6 @@ router.post('/login', function(req, res, next) {
               error: error
             });
           });
-});
-
-// Checking if user is authenticated or not
-router.get('/users', checkAuth, function(req,res,next){
-  User.find({})
-  .then(result => {
-    return res.status(200).json({
-      data: result
-    })
-  })
-  .catch(error => {
-    return res.status(500).json({
-      error: error
-    })
-  })
 });
 
 module.exports = router;
