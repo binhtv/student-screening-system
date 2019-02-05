@@ -1,12 +1,19 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const Student = require('../models/student');
+const Exam = require('../models/exam');
+const { getStudentByEmails } = require('../services/student');
+const { getActiveQuestionCount, getRandomQuestions } = require('../services/question');
+
 const router = express.Router();
 
 const dotenv = require('dotenv');
 dotenv.config();
 const {
 	SMTP_EMAIL: smtpEmail,
-	SMTP_PASSWORD: smtpPassword
+	SMTP_PASSWORD: smtpPassword,
+	EXAM_TOKEN_SECRET: examTokenSecret,
+	EXAM_URL: examUrl
 } = process.env;
 
 router.route('/student-list').get((req, resp) => {
@@ -25,7 +32,7 @@ router.route('/student-list').get((req, resp) => {
 		})
 });
 
-async function sendEmail() {
+async function sendEmail(email, subject, message, messageHTML = '') {
 	const nodemailer = require("nodemailer");
 	// Generate test SMTP service account from ethereal.email
 	// Only needed if you don't have a real mail account for testing
@@ -42,26 +49,76 @@ async function sendEmail() {
 
 	// setup email data with unicode symbols
 	let mailOptions = {
-		from: '"Fred Foo 👻" <foo@example.com>', // sender address
-		to: "binh12121989@gmail.com", // list of receivers
-		subject: "Hello ✔", // Subject line
-		text: "Hello world?", // plain text body
-		html: "<b>Hello world?</b>" // html body
+		from: '"Student Screening System 👻" <sss@noreply.com>', // sender address
+		to: email, // list of receivers
+		subject: subject, // Subject line
+		text: message, // plain text body
+		html: messageHTML // html body
 	};
 
 	// send mail with defined transport object
-	let info = await transporter.sendMail(mailOptions)
-
-	console.log("Message sent: %s", info.messageId);
-	// Preview only available when sending through an Ethereal account
-	console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
+	let info = await transporter.sendMail(mailOptions);
 }
-router.route('/send-email')
-	.post((req, resp) => {
+
+// function getRandomQuestions(limit = 3, callBack) {
+// 	Question.countDocuments().exec().then(count => {
+// 		const random = Math.floor(Math.random() * count);
+// 		Question.find({
+// 			status: true
+// 		}, {
+// 			_id: 0,
+// 			status: 0
+// 		}). /*skip(random).*/ limit(limit).then(questions => callBack(questions));
+// 	});
+// }
+
+router.route('/send-invitation')
+	.post(async (req, resp) => {
 		const data = req.body;
-		sendEmail();
-		resp.status(200).json(1);
+		if (data.emails && data.emails.length > 0) {
+			const questionCount = await getActiveQuestionCount();
+			const randomQuestions = await getRandomQuestions(3, questionCount);
+			const students = await getStudentByEmails(data.emails);
+			const questions = [];
+			randomQuestions.forEach(q => {
+				questions.push({
+					title: q.title,
+					question: q.question,
+					answers: []
+				})
+			});
+			data.emails.forEach(email => {
+				const payload = {
+					email,
+					timestamp: new Date().getTime()
+				}
+				let exam = {
+					studentEmail: email,
+					questions,
+					token: jwt.sign(payload, examTokenSecret),
+					status: 'sent',
+					duration: 0,
+					createdAt: new Date(),
+					updatedAt: new Date()
+				};
+				const student = students.find(s => s.email === email);
+				Exam.create(exam).then(result => {
+					console.log(result);
+					const emailSubject = data.emailSubject;
+					let emailMessage = data.emailMessage;
+					const invitationLink = `<a href="${examUrl}?token=${exam.token}">link</a>`;
+					emailMessage = emailMessage.replace('##STUDENT_NAME##', `${student.lastName} ${student.firstName}`).replace('##EXAM_LINK##', invitationLink);
+					sendEmail(email, emailSubject, '', emailMessage);
+				}).catch(error => console.log(error));
+			});
+
+			resp.status(200).json({
+				code: 1,
+				data: `We are sending invitation to ${data.emails.length} student(s). The system will notify you when all are complete.`
+			});
+		} else {
+			resp.status(200).json('nothing sent');
+		}
 	});
 
 module.exports = router;

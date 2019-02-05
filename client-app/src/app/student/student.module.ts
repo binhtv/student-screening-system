@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 		StudentComponent,
 	],
 	imports: [CommonModule, RouterModule.forChild([
-		{ path: '', component: StudentComponent }
+		{ path: 'take-exam', component: StudentComponent }
 	])],
 	providers: [],
 	bootstrap: []
