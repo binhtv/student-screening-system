@@ -1,1 +1,5 @@
-<input type="submit" class="btn btn-primary" (click)="addCampaign()">Add</button>
+<div class="jumbotron">
+  <h1>Hello {{studentName}}!</h1>
+  <p class="lead">The exam will be one page with 3 programming questions, timed for 120 minutes (2 hours). Once you start, you can not start again.</p>
+  <p><a class="btn btn-lg btn-success" [routerLink]="['student', 'start-exam', token]" role="button">Get started</a></p>
+</div>

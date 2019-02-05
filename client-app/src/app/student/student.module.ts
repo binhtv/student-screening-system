@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { StudentComponent } from './student.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ExamComponent } from './exam/exam.component';
+import { StudentService } from '../shared/services/student.service';
 
 @NgModule({
 	declarations: [
 		StudentComponent,
+		ExamComponent,
 	],
 	imports: [CommonModule, RouterModule.forChild([
-		{ path: '', component: StudentComponent }
+		{ path: 'take-exam', component: StudentComponent },
+		{ path: 'start-exam', component: ExamComponent }
 	])],
-	providers: [],
+	providers: [StudentService],
 	bootstrap: []
 })
 export class StudentModule { }
