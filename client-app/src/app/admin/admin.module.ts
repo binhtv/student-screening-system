@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreatingExamComponent } from './create-question/creating-question.component';
-import { ManagingStaffComponent} from './managing-staff/managing-staff.component';
 import { routing } from './adminRoutes';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin.component';
+import { ManagingStaffComponent} from './managing-staff/managing-staff.component';
 
 @NgModule({
   imports: [
@@ -14,8 +16,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ],
   declarations: [
     CreatingExamComponent,
-    ManagingStaffComponent
-
+    LoginComponent,
+    AdminComponent,
+    ManagingStaffComponent,   
   ],
   exports: [
     CreatingExamComponent,
@@ -23,3 +26,5 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ]
 })
 export class AdminModule { }
+
+

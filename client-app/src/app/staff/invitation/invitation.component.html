@@ -1,40 +1,45 @@
-<form [formGroup]="inviteForm" (ngSubmit)="onSubmit()">
-  <div *ngIf="emails.invalid && (emails.dirty || emails.touched)" class="error">
-    You have to select at least one student
-  </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Email</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th><input type="checkbox" id="checkAll" name="checkAll" formControlName="checkAll" (change)="onCheckAll($event.target.checked)" disabled> Select All</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let student of students|async; let num = index">
-        <th scope="row">{{num + 1}}</th>
-        <td>{{student.email}}</td>
-        <td>{{student.firstName}}</td>
-        <td>{{student.lastName}}</td>
-        <td><input type="checkbox" class="form-check-input" (change)="onStudentSelectChange(student.email, $event.target.checked)"></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="form-group">
-    <label>Email Subject</label>
-    <input class="form-control" rows="3" id="emailSubject" name="emailSubject" formControlName="emailSubject"
-      placeholder="Email Subject" />
-    <div *ngIf="emailSubject.invalid && (emailSubject.dirty || emailSubject.touched)" class="error">
-      Email Subject is required!
+<div style="width: 80%; margin: auto">
+  <form [formGroup]="inviteForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="emails.invalid && (emails.dirty || emails.touched)" class="error">
+      You have to select at least one student
     </div>
-  </div>
-  <div class="form-group">
-    <label>Your message (optional)</label>
-    <textarea class="form-control" rows="3" id="emailMessage" formControlName="emailMessage"></textarea>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary" [disabled]="!inviteForm.valid">Send</button>
-  </div>
-</form>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th><input type="checkbox" id="checkAll" name="checkAll" formControlName="checkAll" (change)="onCheckAll($event.target.checked)"
+              disabled> Select All</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students|async; let num = index">
+          <th scope="row">{{num + 1}}</th>
+          <td>{{student.email}}</td>
+          <td>{{student.firstName}}</td>
+          <td>{{student.lastName}}</td>
+          <td><input type="checkbox" class="form-check-input" (change)="onStudentSelectChange(student.email, $event.target.checked)"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="form-group">
+      <label>Email Subject</label>
+      <input class="form-control" rows="3" id="emailSubject" name="emailSubject" formControlName="emailSubject"
+        placeholder="Email Subject" />
+      <div *ngIf="emailSubject.invalid && (emailSubject.dirty || emailSubject.touched)" class="error">
+        Email Subject is required!
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Your message (optional)</label>
+      <ckeditor [editor]="emailEditor" formControlName="emailMessage" [config]="{height:'300px'}"></ckeditor>
+    </div>
+    <div class="form-group">
+      <div *ngIf="succMessage != ''" class="success">{{succMessage}}</div>
+      <div *ngIf="errorMessage != ''" class="error">{{errorMessage}}</div>
+      <button type="submit" class="btn btn-primary" [disabled]="!inviteForm.valid || sending">{{sending?'Sending':'Send'}}</button>
+    </div>
+  </form>
+</div>

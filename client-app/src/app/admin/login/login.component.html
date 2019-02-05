@@ -1,0 +1,54 @@
+<div class="container py-5">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <h2 class="text-center text-white mb-4">Login Form</h2> -->
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+
+            <!-- form card login -->
+            <div class="card rounded-0">
+
+              <div class="centered">
+
+              <div class="card-header img-center">
+                  <h3 class="mb-0">Login Please</h3>
+              </div>
+
+              <div class="img-center">
+                <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
+              </div>
+
+              <div class="card-body">
+                <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form"> -->
+                <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+                  <div class="img-center">
+                      <div>
+                          <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="Email">
+                          <div *ngIf="!loginForm.get('email').valid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="error">Oops, you missed this one.</div>
+                      </div>
+                      <div>
+                          <input type="password" id="password" class="fadeIn third" formControlName="password" autocomplete="new-password" placeholder="Password">
+                          <div class="invalid-feedback error" *ngIf="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">Enter your password too!</div>
+                      </div>
+                      <div>
+                          <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="checkbox" formControlName="remember">
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description small text-dark">Remember me</span>
+                          </label>
+                      </div>
+                      <input type="submit" class="fadeIn fourth" id="btnLogin" [disabled]="!loginForm.valid" value="Log In">
+                  </div>
+
+                </form>
+              </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
