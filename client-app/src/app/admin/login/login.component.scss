@@ -3,6 +3,15 @@
   margin:0 auto;
 }
 
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-60%, -60%);
+}
+
+
 /* BASIC */
 
 html {
@@ -129,7 +138,7 @@ input[type=text], input[type=password] {
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 85%;
+  width: 100%;
   border: 2px solid #f6f6f6;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
