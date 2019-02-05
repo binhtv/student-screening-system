@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 
 const routes: Routes = [
   { path: 'student', loadChildren: './student/student.module#StudentModule' },
   { path: 'staff', loadChildren: './staff/staff.module#StaffModule' },
-  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+  { path: 'not-found', component: NotfoundComponent }
 ];
 
 @NgModule({

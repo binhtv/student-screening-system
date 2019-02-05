@@ -39,7 +39,7 @@
     <div class="form-group">
       <div *ngIf="succMessage != ''" class="success">{{succMessage}}</div>
       <div *ngIf="errorMessage != ''" class="error">{{errorMessage}}</div>
-      <button type="submit" class="btn btn-primary" [disabled]="!inviteForm.valid">Send</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!inviteForm.valid || sending">{{sending?'Sending':'Send'}}</button>
     </div>
   </form>
 </div>

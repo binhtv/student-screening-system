@@ -8,9 +8,12 @@ const {
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
-        jwt.verify(token, examTokenSecret);
+        console.log(token);
+        const payload = jwt.verify(token, examTokenSecret);
+        req.student = payload;
         next();
     } catch (error) {
-        res.status(401).json({ message: "Invalid token!" });
+        console.log(error);
+        res.status(200).json({ code: 0, message: "Invalid token!" });
     }
 };

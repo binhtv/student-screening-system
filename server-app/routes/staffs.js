@@ -57,20 +57,8 @@ async function sendEmail(email, subject, message, messageHTML = '') {
 	};
 
 	// send mail with defined transport object
-	let info = await transporter.sendMail(mailOptions);
+	await transporter.sendMail(mailOptions);
 }
-
-// function getRandomQuestions(limit = 3, callBack) {
-// 	Question.countDocuments().exec().then(count => {
-// 		const random = Math.floor(Math.random() * count);
-// 		Question.find({
-// 			status: true
-// 		}, {
-// 			_id: 0,
-// 			status: 0
-// 		}). /*skip(random).*/ limit(limit).then(questions => callBack(questions));
-// 	});
-// }
 
 router.route('/send-invitation')
 	.post(async (req, resp) => {
@@ -95,7 +83,7 @@ router.route('/send-invitation')
 				let exam = {
 					studentEmail: email,
 					questions,
-					token: jwt.sign(payload, examTokenSecret),
+					token: jwt.sign(payload, examTokenSecret, { expiresIn: '7d' }),
 					status: 'sent',
 					duration: 0,
 					createdAt: new Date(),
