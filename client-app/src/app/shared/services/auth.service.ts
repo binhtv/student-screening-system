@@ -14,7 +14,9 @@ import { Subject } from 'rxjs';
 export class AuthService {
 
   private isAuthenticated = false;
+  private isRole = 0;
   private authStatusListener = new Subject<boolean>();
+  private authStatusListenerRole = new Subject<any>();
   private tokenTimer: any;
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -27,7 +29,6 @@ export class AuthService {
     this.http.post(API_URLS.API_LOGIN, user)
       .subscribe((response: LoginResponse) => {
         const token = response.token;
-        console.log(token);
         if (token) {
           this.router.navigate(['/']);
           const role = response.role;
@@ -40,8 +41,12 @@ export class AuthService {
           console.log('EXPERIIEE' + expirationDate);
           this.saveAuthData(token, expirationDate, response.userId);
           if (role === 'admin') {
+            this.isRole = 1;
+            this.authStatusListenerRole.next(1);
             this.router.navigate(['/admin']);
           } else {
+            this.isRole = 2;
+            this.authStatusListenerRole.next(2);
             this.router.navigate(['/staff']);
           }
         }
@@ -56,14 +61,24 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
+  getAuthStatusListenerRole() {
+    return this.authStatusListenerRole.asObservable();
+  }
+
   getIsAuth() {
     return this.isAuthenticated;
+  }
+
+  getIsRole() {
+    return this.isRole;
   }
 
   logout() {
     //this.token = null;
     this.isAuthenticated = false;
+    this.isRole = null;
     this.authStatusListener.next(false);
+    this.authStatusListenerRole.next(0);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     //this.userId = null;
