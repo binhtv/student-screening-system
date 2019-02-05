@@ -2,14 +2,14 @@
 
   <div class="form-group">
     <label for="exampleInputEmail1">First Name</label>
-    <input formControlName="fristname" type="text" class="form-control" id="firstname" aria-describedby="FirstNameHelp"
+    <input formControlName="firstName" type="text" class="form-control" id="firstname" aria-describedby="FirstNameHelp"
       placeholder="Enter Your First Name">
     <small id="firstNameHelp" class="form-text text-muted">We'll never share your Name with anyone else.</small>
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Last Name</label>
-    <input formControlName="lastname" type="text" class="form-control" id="lastname" aria-describedby="LastNameHelp"
+    <input formControlName="lastName" type="text" class="form-control" id="lastname" aria-describedby="LastNameHelp"
       placeholder="Enter Your Last Name">
     <small id="LastNameHelp" class="form-text text-muted">We'll never share your Name with anyone else.</small>
   </div>
@@ -41,8 +41,8 @@
     </thead>
     <tbody>
       <tr *ngFor='let staff of staffs'>
-        <td>{{ staff.fristname }}</td>
-        <td>{{staff.lastname }}</td>
+        <td>{{ staff.fristName }}</td>
+        <td>{{staff.lastName }}</td>
         <td>{{ staff.email }}</td>
         <td>{{ staff.hiredate}}</td>
         <td><button style="width: 100px" class="btn btn-primary" (click)='[deletStaff(staff.firstname)]'>Delete</button></td>

@@ -1,6 +1,6 @@
 
 import { CreatingExamComponent } from "./create-question/creating-question.component";
-import { ManagingStaffComponent} from './managing-staff/managing-staff.component';
+import { ManagingStaffComponent} from './managing-staff/create-staff.component';
 import { Routes, RouterModule } from "@angular/router";
 import { ModuleWithProviders } from "@angular/core";
 import { AdminComponent } from './admin.component';
@@ -12,7 +12,7 @@ export const routes: Routes = [
         path: 'create-question', component: CreatingExamComponent
     },
     {
-        path: 'manage-staff', component: ManagingStaffComponent
+        path: 'create-staff', component: ManagingStaffComponent
     },
     { path: '', component: AdminComponent },
     { path: 'create-question', component: CreatingExamComponent },
