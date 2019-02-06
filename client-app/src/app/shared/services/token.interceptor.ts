@@ -11,10 +11,10 @@ export class TokenInterceptor implements HttpInterceptor {
 	constructor() { }
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		if (request.url.indexOf('/students') !== -1) {
-			const parts = request.url.split('token=');
+			const token = localStorage.getItem('student_token');
 			request = request.clone({
 				setHeaders: {
-					Authorization: `Bearer ${parts[1]}`
+					Authorization: `Bearer ${token}`
 				}
 			});
 		} else {
