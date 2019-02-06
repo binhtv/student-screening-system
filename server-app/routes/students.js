@@ -10,7 +10,7 @@ const {
 const router = express.Router();
 
 router.route('/get-exam')
-	.get(checkToken, (req, resp) => {
+	.get((req, resp) => {
 		getExamByToken(req.student.token).then(exam => {
 			return resp.status(200).json({
 				code: 1,
@@ -25,7 +25,7 @@ router.route('/get-exam')
 	});
 
 router.route('/get-info')
-	.get(checkToken, (req, resp) => {
+	.get((req, resp) => {
 		getStudentByEmail(req.student.email).then(student => resp.status(200).json({
 			code: 1,
 			data: student
@@ -37,7 +37,7 @@ router.route('/get-info')
 	});
 
 router.route('/submit-answer')
-	.put(checkToken, async (req, resp) => {
+	.put(async (req, resp) => {
 		const exam = await getExamById(req.body._id);
 		submitAnswer(req.body, exam.updatedAt.getTime()).then(result => resp.status(200).json({
 			code: 1,
@@ -49,7 +49,7 @@ router.route('/submit-answer')
 	});
 
 router.route('/start-exam')
-	.put(checkToken, (req, resp) => {
+	.put((req, resp) => {
 		startExamByToken(req.student.token).then(result => resp.status(200).json({
 			code: 1,
 			data: result

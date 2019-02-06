@@ -11,7 +11,7 @@ import { User } from 'src/app/shared/models/user';
 export class ManagingStaffComponent implements OnInit {
   admissionstaff: FormGroup;
 
-  constructor(private fb: FormBuilder, private  router: Router, private admistaff: AdminService) { }
+  constructor(private fb: FormBuilder, private router: Router, private admistaff: AdminService) { }
 
   ngOnInit() {
     this.admissionstaff = this.fb.group({
@@ -19,12 +19,13 @@ export class ManagingStaffComponent implements OnInit {
       lastName: [''],
       email: [''],
       password: [''],
-    })
+    });
   }
- 
+
   register() {
     this.admistaff.createAdmissionStaff(this.admissionstaff.value).subscribe(resp => {
       console.log(resp);
+      this.router.navigate(['/staff']);
     });
   }
 }

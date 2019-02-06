@@ -38,7 +38,7 @@ export class AuthService {
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log('EXPERIIEE' + expirationDate);
+          console.log('Expired: ' + expirationDate);
           this.saveAuthData(token, expirationDate, response.userId);
           if (role === 'admin') {
             this.isRole = 1;
@@ -47,7 +47,7 @@ export class AuthService {
           } else {
             this.isRole = 2;
             this.authStatusListenerRole.next(2);
-            this.router.navigate(['/staff']);
+            this.router.navigate(['/staff/invite']);
           }
         }
 

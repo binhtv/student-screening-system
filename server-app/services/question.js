@@ -1,7 +1,7 @@
 const Question = require('../models/question');
 
 function getRandomQuestions(limit = 3, questionCount = 0) {
-	const random = Math.floor(Math.random() * questionCount);
+	const random = Math.floor(Math.random() * (questionCount - limit));
 	if(questionCount < limit) {
 		random = 0;
 	}
@@ -10,7 +10,7 @@ function getRandomQuestions(limit = 3, questionCount = 0) {
 	}, {
 		_id: 0,
 		status: 0
-	}). skip(random). limit(limit);
+	}).skip(random).limit(limit);
 }
 
 function getActiveQuestionCount() {

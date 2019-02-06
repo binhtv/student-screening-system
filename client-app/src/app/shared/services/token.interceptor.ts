@@ -18,9 +18,10 @@ export class TokenInterceptor implements HttpInterceptor {
 				}
 			});
 		} else {
+			const token = localStorage.getItem('token');
 			request = request.clone({
 				setHeaders: {
-					Authorization: `Bearer 'Replace it'`
+					Authorization: `Bearer ${token}`
 				}
 			});
 		}

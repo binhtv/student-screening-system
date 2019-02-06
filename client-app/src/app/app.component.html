@@ -4,10 +4,10 @@
         <a class="navbar-brand" routerLink="/"> STUDENT SYSTEM</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/"><span class="glyphicon glyphicon-home"> </span> Home</a></li>
 
         <li *ngIf="userIsAuthenticated && isRole===1" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Admin
+          <a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"> </span> Admin
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a [routerLink]="['admin', 'create-staff']">Add Staff</a></li>
@@ -17,18 +17,13 @@
         </li>
 
         <li *ngIf="userIsAuthenticated && isRole===2" class="dropdown">
-          <a [routerLink]="['staff']" class="dropdown-toggle" data-toggle="dropdown">Staff
-          <span class="caret"></span></a>
+          <a [routerLink]="['staff', 'invite']"> <span class="glyphicon glyphicon-send"> </span> Send Invitation
+          </a>
         </li>
 
         <li class="dropdown">
-          <a [routerLink]="['staff', 'invite']" class="dropdown-toggle" data-toggle="dropdown">Send Invitation
-          <span class="caret"></span></a>
-        </li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown">Contact
-          <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-phone-alt"> </span> Contact
+          </a>
         </li>
 
       </ul>
