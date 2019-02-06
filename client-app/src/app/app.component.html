@@ -17,11 +17,6 @@
         </li>
 
         <li *ngIf="userIsAuthenticated && isRole===2" class="dropdown">
-          <a [routerLink]="['staff']" class="dropdown-toggle" data-toggle="dropdown">Staff
-          <span class="caret"></span></a>
-        </li>
-
-        <li class="dropdown">
           <a [routerLink]="['staff', 'invite']"> <span class="glyphicon glyphicon-send"> </span> Send Invitation
           </a>
         </li>
