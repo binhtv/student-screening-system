@@ -1,7 +1,8 @@
 <div class="row justify-content-center">
   <div class="col-md-12 text-center">
     <h1>HOME: Add course info, group, profess and the modify link below based on the role</h1>
-    <li> <a [routerLink]="['login']"> <span class="glyphicon glyphicon-log-in"></span>
-      Login</a> </li>
+    <li *ngIf="!userIsAuthenticated">
+        <a [routerLink]="['login']"> <span class="glyphicon glyphicon-log-in"> </span> Login </a>
+    </li>
   </div>
 </div>
