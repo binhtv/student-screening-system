@@ -1,0 +1,24 @@
+<div style="width: 70%; margin: auto">
+    <div>
+        <td><a class="btn btn-primary" [routerLink]="['/staff', 'invite']">New Invitation</a></td>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>To</th>
+          <th>Sent Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invitation of invitations|async; let num = index" [ngClass]="{error: invitation.status==='fail', success: invitation.status==='pass'}">
+          <th scope="row">{{num + 1}}</th>
+          <td>{{invitation.studentEmail}}</td>
+          <td>{{invitation.createdAt|date:'medium'}}</td>
+          <td>{{invitation.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

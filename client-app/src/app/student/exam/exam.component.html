@@ -1,3 +1,14 @@
-<p>
-  exam works!
-</p>
+<h1 style="position: fixed; top: 50%"><countdown [config]="{leftTime: totalTime, notify: [notifyAt]}" (finished)="onNoMoreTime()" (notify)="lessTimeMore()">$!h!:$!m!:$!s!</countdown></h1>
+<div style="width: 70%; margin: auto">
+  <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" *ngFor="let question of (exam|async)?.questions; let num = index; trackBy:identify">
+      <h3>{{num + 1}}. {{question.title}}</h3>
+      <div class="help-block">{{question.question}}</div>
+      <ace-editor theme="monokai" mode="javascript" style=" min-height: 150px; overflow: auto;" [formControlName]="'answer'+(num+1)"></ace-editor>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="!examForm.valid || sending">{{sending==='complete'?'Done': (sending?'Sending':'Send')}}</button>
+    </div>
+
+  </form>
+</div>

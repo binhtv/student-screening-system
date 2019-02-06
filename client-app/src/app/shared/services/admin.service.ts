@@ -32,7 +32,7 @@ export class AdminService {
     return this.http.post(API_URLS.API_ADMIN_NEW_STAFF, staff);
   }
 
-  loadStaffs() {
+  public loadStaffs() {
     return this.http.get(API_URLS.API_STAFF_LIST);
   }
 
@@ -50,4 +50,15 @@ export class AdminService {
 
   }
 
+  public loadExams() {
+    return this.http.get(API_URLS.API_ADMIN_LOAD_EXAMS);
+  }
+
+  public loadExam(id) {
+    return this.http.get(`${API_URLS.API_ADMIN_LOAD_EXAM}/${id}`);
+  }
+
+  public updateExamStatus(status, id) {
+    return this.http.put(`${API_URLS.API_ADMIN_UPDATE_EXAM_STATUS}/${id}`, {status});
+  }
 }

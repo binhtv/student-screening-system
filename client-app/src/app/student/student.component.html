@@ -1,5 +1,12 @@
-<div class="jumbotron">
+<div class="jumbotron" *ngIf="!alreadyStarted">
   <h1>Hello {{studentName}}!</h1>
   <p class="lead">The exam will be one page with 3 programming questions, timed for 120 minutes (2 hours). Once you start, you can not start again.</p>
-  <p><a class="btn btn-lg btn-success" [routerLink]="['student', 'start-exam', token]" role="button">Get started</a></p>
+  <div *ngIf="error != ''" class="error">
+        {{error}}
+	</div>
+  <p><button class="btn btn-lg btn-success" (click)="onStart()" role="button" [disabled]="sending">{{sending? 'Getting started': 'Get started'}}</button></p>
+</div>
+
+<div class="jumbotron" *ngIf="alreadyStarted">
+	<p class="lead error">You finished this exam. You can start once!</p>
 </div>

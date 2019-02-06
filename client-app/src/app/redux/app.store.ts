@@ -1,7 +1,9 @@
+import { Exam } from '../shared/models/exam';
+
 export interface AppStore {
-    admin: any,
-    staff: { students: any[] },
-    student: any[],
+    admin: { exams: Exam[], exam: Exam },
+    staff: { students: any[], invitations: Exam[]},
+    student: { exam: Exam },
     campaigns: any[],
     user: any[],
 }

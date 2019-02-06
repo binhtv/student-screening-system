@@ -9,11 +9,13 @@ import { reducers } from './redux/reducers/index.reducer';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 import { TokenInterceptor } from './shared/services/token.interceptor';
+import { UnauthorizedComponent } from './shared/components/unauthorized/401.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
