@@ -36,7 +36,7 @@ export class AdminService {
     return this.http.get(API_URLS.API_ADMIN_STAFF_LIST);
   }
 
-  updateUserStatus(email: string, status: boolean) {
+  public updateUserStatus(email: string, status: boolean) {
       const user = {
         email: email,
         status: status
@@ -60,5 +60,9 @@ export class AdminService {
 
   public updateExamStatus(status, id) {
     return this.http.put(`${API_URLS.API_ADMIN_UPDATE_EXAM_STATUS}/${id}`, {status});
+  }
+
+  public publishExamResult(examId) {
+    return this.http.post(`${API_URLS.API_ADMIN_PUBLISH_RESULT}`, {examId});
   }
 }

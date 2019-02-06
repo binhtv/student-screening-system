@@ -19,7 +19,10 @@
         <td>{{exam.updatedAt|date:'medium'}}</td>
         <td>{{exam.duration|durationToHours}}</td>
         <td>{{exam.status}}</td>
-        <td><a [routerLink]="['/admin', 'review-exam', exam._id]">Review Exam</a></td>
+        <td>
+          <a [routerLink]="['/admin', 'review-exam', exam._id]">Review Exam</a> | 
+          <span><a *ngIf="exam.status==='fail' || exam.status==='pass'" href="javascript:void(0);" (click)="publishResult($event, exam._id)">Publish Result</a></span>
+        </td>
       </tr>
     </tbody>
   </table>

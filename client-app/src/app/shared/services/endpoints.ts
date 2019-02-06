@@ -10,7 +10,9 @@ export const API_URLS = {
 	API_ADMIN_UPDATE_EXAM_STATUS: `${ROOT_URL}/admin/update-exam`,
 	API_ADMIN_NEW_QUESTION: `${ROOT_URL}/admin/create-question`,
 	API_ADMIN_NEW_STAFF: `${ROOT_URL}/admin/create-staff`,
-  API_ADMIN_STAFF_LIST: `${ROOT_URL}/admin/staff-list`,
+	API_ADMIN_STAFF_LIST: `${ROOT_URL}/admin/staff-list`,
+	API_ADMIN_PUBLISH_RESULT: `${ROOT_URL}/admin/publish-result`,
+
 	API_LOGIN: `${ROOT_URL}/users/login`,
 
 	API_STUDENT_GET_EXAM: `${ROOT_URL}/students/get-exam`,

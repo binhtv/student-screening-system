@@ -8,6 +8,9 @@ const {
 	loadExamById,
 	updateExamStatus
 } = require('../services/exam');
+const {
+	sendEmail
+} = require('../services/email');
 
 router.route('/create-question').post((req, resp) => {
 	const question = req.body;
@@ -92,7 +95,9 @@ router.route('/update-exam/:id')
 
 // find all user role permission as staff	
 router.route('/staff-list').get((req, resp) => {
-	User.find({role: 'staff'})
+	User.find({
+			role: 'staff'
+		})
 		.then(result => {
 			return resp.status(200).json({
 				code: 1,
@@ -106,4 +111,29 @@ router.route('/staff-list').get((req, resp) => {
 			})
 		})
 });
+
+router.route('/publish-result')
+	.post((req, resp) => {
+		loadExamById(req.body.examId).then(exam => {
+			if (exam && (exam.status === 'fail' || exam.status === 'pass')) {
+				const message = exam.status === 'fail' ? 'Oh sorry you was failed!' : 'Congratulation, you passed!';
+				sendEmail(exam.studentEmail, 'Your exam result is ready to view', message);
+				return resp.status(200).json({
+					code: 1,
+					data: null
+				});
+			} else {
+				return resp.status(200).json({
+					code: 0,
+					data: null
+				});
+			}
+		}).catch(err => {
+			return resp.status(500).json({
+				code: 0,
+				data: null
+			});
+		});
+	});
+
 module.exports = router;

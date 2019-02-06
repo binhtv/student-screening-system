@@ -1,14 +1,12 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exam } from 'src/app/shared/models/exam';
-import { StudentService } from 'src/app/shared/services/student.service';
 import { ApiResponse } from '../../shared/models/api-response';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStore } from 'src/app/redux/app.store';
 import { Observable, Subscription } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
-import { LoadExam, ChangeAnswer, AdminLoadExams } from 'src/app/redux/actions/actions';
+import { AdminLoadExams } from 'src/app/redux/actions/actions';
 import { AdminService } from 'src/app/shared/services/admin.service';
 
 @Component({
@@ -36,6 +34,17 @@ export class ListExamComponent implements OnInit {
 
     this.subscription = this.exams.subscribe(exams => {
       console.log(exams);
+    });
+  }
+
+  publishResult($event, examId) {
+    debugger;
+    this.adminService.publishExamResult(examId).subscribe((resp: ApiResponse) => {
+      if(resp.code === 1) {
+        $event.target.parentNode.innerHTML = '<span class="success">Sent</span>';
+      } else {
+        $event.target.parentNode.innerHTML = '<span class="error">Fail to sent</span>';
+      }
     });
   }
 
