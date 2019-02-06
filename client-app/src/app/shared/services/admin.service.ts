@@ -61,4 +61,21 @@ export class AdminService {
   public updateExamStatus(status, id) {
     return this.http.put(`${API_URLS.API_ADMIN_UPDATE_EXAM_STATUS}/${id}`, {status});
   }
+
+  public loadQuestions(){
+    return this.http.get(API_URLS.API_ADMIN_LOAD_QUESTIONS);
+  }
+
+  public updateQuestionStatus(id: string, status:boolean){
+    const question = {
+      id: id,
+      status: status
+    };
+    this.http.put(API_URLS.API_ADMIN_UPDATE_QUESTION_STATUS, question)
+      .subscribe(repsonse => {
+        alert('Update Success');
+      },error => {
+        alert('Can not update');
+      });
+  }
 }

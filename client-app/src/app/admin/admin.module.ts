@@ -10,6 +10,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { ReviewExamComponent } from './review-exam/review-exam.component';
 import { ListExamComponent } from './list-exam/list.component';
 import { DurationToHoursPipe } from '../shared/pipes/durationToHours.pipe';
+import { ListquestionsComponent } from './listquestions/listquestions.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { DurationToHoursPipe } from '../shared/pipes/durationToHours.pipe';
     AdminComponent,
     ManagingStaffComponent,
     ReviewExamComponent,
-    ListExamComponent
+    ListExamComponent,
+    ListquestionsComponent
   ],
   exports: [
     CreatingExamComponent,

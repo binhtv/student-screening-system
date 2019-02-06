@@ -89,4 +89,30 @@ router.route('/update-exam/:id')
 			});
 		});
 	});
+
+router.route('/load-questions').get((req, resp) => {
+	Question.find({})
+		.then(result => {
+			return resp.status(200).json({
+				code: 1,
+				data: result
+			})
+		})
+		.catch(error => {
+			return resp.status(500).json({
+				code: 0,
+				error: error
+			})
+		})
+});
+
+router.put("/update-question", (req, res, next) => {
+	const questionStatus = {
+		status: req.body.status
+	}
+	Question.updateOne({_id: req.body.id }, questionStatus).then(result => {
+		res.status(200).json({ message: "Update successful!" });
+	});
+});
+
 module.exports = router;

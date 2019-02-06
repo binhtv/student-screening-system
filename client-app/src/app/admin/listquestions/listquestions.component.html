@@ -1,3 +1,30 @@
-<p>
-  listquestions works!
-</p>
+<div style="width: 80%; margin: auto">
+  <h2> View All Questions </h2>
+  <form (ngSubmit)="onSubmit()">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let q of questions; let i = index">
+            <th scope="row"> {{ i + 1}}</th>
+            <td> {{ q.title }} </td>           
+            <td> {{ q.question }} </td>
+            <td>
+              <input *ngIf="q.status" checked="checked" type="checkbox" (change)="onQuestionSelectChange(q._id, $event.target.checked)">
+              <input *ngIf="!q.status" type="checkbox" (change)="onQuestionSelectChange(q._id, $event.target.checked)">
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
+
+
+
+

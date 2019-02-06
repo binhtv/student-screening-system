@@ -7,6 +7,7 @@ import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
 import { ReviewExamComponent } from './review-exam/review-exam.component';
 import { ListExamComponent } from './list-exam/list.component';
+import { ListquestionsComponent } from './listquestions/listquestions.component'
 
 export const routes: Routes = [
     { path: ''},
@@ -20,7 +21,8 @@ export const routes: Routes = [
     { path: 'create-question', component: CreatingExamComponent },
     { path: 'login', component: LoginComponent },
     { path: 'review-exam/:exam_id', component: ReviewExamComponent},
-    { path: 'exams', component: ListExamComponent}
+    { path: 'exams', component: ListExamComponent},
+    { path: 'question', component: ListquestionsComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

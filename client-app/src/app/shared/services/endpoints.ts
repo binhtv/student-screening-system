@@ -16,4 +16,8 @@ export const API_URLS = {
 	API_STUDENT_GET_STUDENT_INFO: `${ROOT_URL}/students/get-info`,
 	API_STUDENT_SUBMIT_EXAM: `${ROOT_URL}/students/submit-answer`,
 	API_STUDENT_START_EXAM: `${ROOT_URL}/students/start-exam`,
+
+	API_ADMIN_LOAD_QUESTIONS: `${ROOT_URL}/admin/load-questions`,
+	API_ADMIN_UPDATE_QUESTION_STATUS: `${ROOT_URL}/admin/update-question`,
+
 }

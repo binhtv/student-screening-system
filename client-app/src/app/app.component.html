@@ -10,9 +10,12 @@
           <a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"> </span> Admin
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-              <li><a [routerLink]="['admin', 'create-staff']">Add Staff</a></li>
+              <li><a [routerLink]="['admin', 'create-staff']">Add Staff</a></li>  
+               <li><a [routerLink]="['staff']">View Staff</a></li>
+              
               <li><a [routerLink]="['admin', 'create-question']">Add Question</a></li>
-              <li><a [routerLink]="['staff']">View Staff</a></li>
+              <li><a [routerLink]="['admin', 'question']">View Question</a></li> 
+           
             </ul>
         </li>
 

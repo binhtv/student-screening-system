@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Question } from '../../shared/models/question';
+import { AdminService } from '../../shared/services/admin.service';
+import { NgModule } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-listquestions',
@@ -6,10 +10,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listquestions.component.scss']
 })
 export class ListquestionsComponent implements OnInit {
-
-  constructor() { }
+  questions;
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
+    return this.adminService.loadQuestions()
+      .subscribe((response: Question)=>{
+        console.log(response['data']);
+        this.questions = response['data'];
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  onQuestionSelectChange(id: string, status: boolean){
+    this.adminService.updateQuestionStatus(id, status);
+  }
+
+  onSubmit(){
+
   }
 
 }
