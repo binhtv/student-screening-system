@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let exam of exams|async; let num = index">
+      <tr *ngFor="let exam of exams|async; let num = index" [ngClass]="{error: exam.status==='fail', success: exam.status==='pass'}">
         <th scope="row">{{num + 1}}</th>
         <td>{{exam.studentEmail}}</td>
         <td>{{exam.createdAt|date:'medium'}}</td>

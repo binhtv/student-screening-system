@@ -1,6 +1,6 @@
 export interface Exam {
 	_id: string,
-	question: {
+	questions: {
 		title: string,
 		question: string,
 		answers: string[]

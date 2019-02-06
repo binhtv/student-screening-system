@@ -4,11 +4,13 @@ const User = require('../models/user');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const {
-	loadExams
+	loadExams,
+	loadExamById,
+	updateExamStatus
 } = require('../services/exam');
 
 router.route('/create-question').post((req, resp) => {
-    const question = req.body;
+	const question = req.body;
 	Question.create(question)
 		.then(result => {
 			return resp.status(200).json({
@@ -61,5 +63,32 @@ router.route('/load-exams')
 			})
 		})
 	});
-
+router.route('/load-exam/:id')
+	.get((req, resp) => {
+		loadExamById(req.params.id).then(exam => {
+			return resp.status(200).json({
+				code: 1,
+				data: exam
+			});
+		}).catch(err => {
+			return resp.status(500).json({
+				code: 0,
+				data: null
+			})
+		});
+	});
+router.route('/update-exam/:id')
+	.put((req, resp) => {
+		updateExamStatus(req.body.status, req.params.id).then(result => {
+			return resp.status(200).json({
+				code: 1,
+				data: result
+			});
+		}).catch(err => {
+			return resp.status(500).json({
+				code: 0,
+				data: null
+			});
+		});
+	});
 module.exports = router;

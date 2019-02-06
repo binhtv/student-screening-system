@@ -6,6 +6,8 @@ export enum ActionTypes {
 	STUDENT_LOAD_EXAM = 'STUDENT_LOAD_EXAM',
 	STUDENT_ANSWER_CHANGE = 'STUDENT_ANSWER_CHANGE',
 	ADMIN_LOAD_EXAMS = 'ADMIN_LOAD_EXAMS',
+	ADMIN_LOAD_EXAM = 'ADMIN_LOAD_EXAM',
+	ADMIN_CHANGE_EXAM_STATUS = 'ADMIN_CHANGE_EXAM_STATUS',
 }
 
 export class LoadStudents implements Action {
@@ -28,4 +30,14 @@ export class AdminLoadExams implements Action {
 	constructor(public readonly payload: Exam[]) {}
 }
 
-export type AppActions = LoadStudents | LoadExam | ChangeAnswer | AdminLoadExams;
+export class AdminLoadExam implements Action {
+	readonly type = ActionTypes.ADMIN_LOAD_EXAM;
+	constructor(public readonly payload: Exam) {}
+}
+
+export class AdminChangeExamStatus implements Action {
+	readonly type = ActionTypes.ADMIN_CHANGE_EXAM_STATUS;
+	constructor(public readonly payload: string) {}
+}
+
+export type AppActions = LoadStudents | LoadExam | ChangeAnswer | AdminLoadExams | AdminLoadExam | AdminChangeExamStatus;
