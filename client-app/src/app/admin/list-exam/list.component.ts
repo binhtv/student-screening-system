@@ -1,11 +1,12 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Exam } from 'src/app/shared/models/exam';
 import { ApiResponse } from '../../shared/models/api-response';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppStore } from 'src/app/redux/app.store';
 import { Observable, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { AdminLoadExams } from 'src/app/redux/actions/actions';
 import { AdminService } from 'src/app/shared/services/admin.service';
 
@@ -16,11 +17,16 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 export class ListExamComponent implements OnInit {
   exams: Observable<Array<Exam>>;
   sending: boolean = false;
+  searchForm: FormGroup;
+  searchingText: string = '';
   private subscription: Subscription;
 
 
   constructor(private store: Store<AppStore>, private router: Router, private adminService: AdminService, private formBuilder: FormBuilder) {
     this.exams = store.select(store => store.admin.exams);
+    this.searchForm = this.formBuilder.group({
+      searchEmail: ['']
+    });
   }
 
   ngOnInit() {
@@ -32,8 +38,12 @@ export class ListExamComponent implements OnInit {
       }
     });
 
-    this.subscription = this.exams.subscribe(exams => {
-      console.log(exams);
+    // this.subscription = this.exams.subscribe(exams => {
+    //   console.log(exams);
+    // });
+
+    this.searchEmail.valueChanges.pipe(debounceTime(200)).subscribe(str => {
+      this.searchingText = str;
     });
   }
 
@@ -49,5 +59,9 @@ export class ListExamComponent implements OnInit {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  get searchEmail() {
+    return this.searchForm.get('searchEmail');
   }
 }

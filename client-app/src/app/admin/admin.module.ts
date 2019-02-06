@@ -11,6 +11,7 @@ import { ListExamComponent } from './list-exam/list.component';
 import { DurationToHoursPipe } from '../shared/pipes/durationToHours.pipe';
 import { ListquestionsComponent } from './listquestions/listquestions.component';
 import { ListStaffComponent } from './list-staff/list-staff.component';
+import { FilterByEmail } from '../shared/pipes/filterByEmail.pipe';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ListStaffComponent } from './list-staff/list-staff.component';
   ],
   declarations: [
     DurationToHoursPipe,
+    FilterByEmail,
     CreatingExamComponent,
     AdminComponent,
     ManagingStaffComponent,

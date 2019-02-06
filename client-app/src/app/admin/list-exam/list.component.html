@@ -1,4 +1,10 @@
-<div style="width: 70%; margin: auto">
+<div style="width: 90%; margin: auto">
+  <form [formGroup]="searchForm" style="width: 300px;">
+    <div class="form-group">
+      <p>Filter by email</p>
+      <input name="search" class="form-control" formControlName="searchEmail"/>
+    </div>
+  </form>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -12,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let exam of exams|async; let num = index" [ngClass]="{error: exam.status==='fail', success: exam.status==='pass'}">
+      <tr *ngFor="let exam of (exams|async)|filterByEmail:searchingText; let num = index" [ngClass]="{error: exam.status==='fail', success: exam.status==='pass'}">
         <th scope="row">{{num + 1}}</th>
         <td>{{exam.studentEmail}}</td>
         <td>{{exam.createdAt|date:'medium'}}</td>
@@ -20,7 +26,7 @@
         <td>{{exam.duration|durationToHours}}</td>
         <td>{{exam.status}}</td>
         <td>
-          <a [routerLink]="['/admin', 'review-exam', exam._id]">Review Exam</a> | 
+          <a [routerLink]="['/admin', 'review-exam', exam._id]">Review Exam</a><span *ngIf="exam.status==='fail' || exam.status==='pass'">&nbsp;|&nbsp;</span>
           <span><a *ngIf="exam.status==='fail' || exam.status==='pass'" href="javascript:void(0);" (click)="publishResult($event, exam._id)">Publish Result</a></span>
         </td>
       </tr>
