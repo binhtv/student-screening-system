@@ -18,7 +18,7 @@ import { ManagingStaffComponent} from './managing-staff/create-staff.component';
     CreatingExamComponent,
     LoginComponent,
     AdminComponent,
-    ManagingStaffComponent  
+    ManagingStaffComponent
   ],
   exports: [
     CreatingExamComponent,

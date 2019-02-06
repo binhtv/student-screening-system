@@ -1,8 +1,8 @@
 
-import { CreatingExamComponent } from "./create-question/creating-question.component";
+import { CreatingExamComponent } from './create-question/creating-question.component';
 import { ManagingStaffComponent} from './managing-staff/create-staff.component';
-import { Routes, RouterModule } from "@angular/router";
-import { ModuleWithProviders } from "@angular/core";
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { LoginComponent } from './login/login.component';
 

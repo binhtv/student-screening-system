@@ -1,7 +1,38 @@
-<!-- Jumbotron -->
-<div class="jumbotron">
-  <h1>Welcome Staff!</h1>
-  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus
-    commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-  <p><a class="btn btn-lg btn-success" [routerLink]="['invite']" role="button">Invite new student now</a></p>
+
+<div style="width: 80%; margin: auto">
+    <form ng-submit="sc.execute(record)" [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+      <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Status</th>
+              <th>
+                <input type="checkbox" id="checkAll" name="checkAll" formControlName="checkAll" disabled>
+                  Select All
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+              <th scope="row"> {{ i + 1}} </th>
+              <td> {{ user.email }} </td>
+              <td> {{ user.firstName }} </td>
+              <td> {{ user.lastName }} </td>
+              <td>
+                  <span *ngIf="!user.status" class="glyphicon glyphicon glyphicon-minus-sign red"> </span>
+                  <span *ngIf="user.status" class="glyphicon glyphicon glyphicon-check green"> </span>
+              </td>
+              <td>
+                <input *ngIf="!user.status" type="checkbox" class="form-check-input">
+                <input *ngIf="user.status" type="checkbox" class="form-check-input" checked="checked">
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <button type="submit" class="btn btn-info"> Submit </button>
+    </form>
 </div>

@@ -3,4 +3,5 @@ export interface AppStore {
     staff: { students: any[] },
     student: any[],
     campaigns: any[],
+    user: any[],
 }

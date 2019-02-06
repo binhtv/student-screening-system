@@ -31,4 +31,7 @@ export class AdminService {
     return this.http.post(API_URLS.API_ADMIN_NEW_STAFF, staff);
   }
 
+  loadStaffs() {
+    return this.http.get(API_URLS.API_STAFF_LIST);
+  }
 }
