@@ -6,6 +6,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin.component';
 import { ManagingStaffComponent} from './managing-staff/create-staff.component';
+import { ListquestionsComponent } from './listquestions/listquestions.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ManagingStaffComponent} from './managing-staff/create-staff.component';
     CreatingExamComponent,
     LoginComponent,
     AdminComponent,
-    ManagingStaffComponent  
+    ManagingStaffComponent,
+    ListquestionsComponent  
   ],
   exports: [
     CreatingExamComponent,
