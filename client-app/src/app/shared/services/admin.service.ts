@@ -31,7 +31,11 @@ export class AdminService {
     return this.http.post(API_URLS.API_ADMIN_NEW_STAFF, staff);
   }
 
-  loadStaffs() {
+  public loadStaffs() {
     return this.http.get(API_URLS.API_STAFF_LIST);
+  }
+
+  public loadExams() {
+    return this.http.get(API_URLS.API_ADMIN_LOAD_EXAMS);
   }
 }

@@ -8,5 +8,7 @@ export interface Exam {
 	studentEmail: string,
 	token: string,
 	status: string,
-	duration: number
+	duration: number,
+	createdAt: Date,
+	updatedAt: Date
 }

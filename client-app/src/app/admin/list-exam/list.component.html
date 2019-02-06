@@ -1,0 +1,26 @@
+<div style="width: 70%; margin: auto">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>By</th>
+        <th>Sent Date</th>
+        <th>Submit Date</th>
+        <th>Time Spent</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exam of exams|async; let num = index">
+        <th scope="row">{{num + 1}}</th>
+        <td>{{exam.studentEmail}}</td>
+        <td>{{exam.createdAt|date:'medium'}}</td>
+        <td>{{exam.updatedAt|date:'medium'}}</td>
+        <td>{{exam.duration|durationToHours}}</td>
+        <td>{{exam.status}}</td>
+        <td><a [routerLink]="['/admin', 'review-exam', exam._id]">Review Exam</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
