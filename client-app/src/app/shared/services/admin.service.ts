@@ -33,7 +33,7 @@ export class AdminService {
   }
 
   public loadStaffs() {
-    return this.http.get(API_URLS.API_STAFF_LIST);
+    return this.http.get(API_URLS.API_ADMIN_STAFF_LIST);
   }
 
   updateUserStatus(email: string, status: boolean) {

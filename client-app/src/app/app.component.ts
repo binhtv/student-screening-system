@@ -20,18 +20,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
-    this.isRole = this.authService.getIsRole();
-    this.authListenerSubs = this.authService
-    .getAuthStatusListener()
-    .subscribe(isAuthenticated => {
-        this.userIsAuthenticated = isAuthenticated;
-    });
+    this.isAdmin = this.authService.isAdmin();
+    this.isStaff = this.authService.isStaff();
+    // this.isRole = this.authService.getIsRole();
+    // this.authListenerSubs = this.authService
+    // .getAuthStatusListener()
+    // .subscribe(isAuthenticated => {
+    //     this.userIsAuthenticated = isAuthenticated;
+    // });
 
-    this.authListenerSubsRole = this.authService
-    .getAuthStatusListenerRole()
-    .subscribe(isAuthenticatedRole => {
-        this.isRole = isAuthenticatedRole;
-    });
+    // this.authListenerSubsRole = this.authService
+    // .getAuthStatusListenerRole()
+    // .subscribe(isAuthenticatedRole => {
+    //   this.isRole = isAuthenticatedRole;
+    // });
   }
 
   onLogout() {
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authListenerSubs.unsubscribe();
+    //this.authListenerSubs.unsubscribe();
   }
 
 }

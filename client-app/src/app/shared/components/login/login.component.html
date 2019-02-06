@@ -30,21 +30,11 @@
                           <input type="password" id="password" class="fadeIn third" formControlName="password" autocomplete="new-password" placeholder="Password">
                           <div class="invalid-feedback error" *ngIf="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">Enter your password too!</div>
                       </div>
-                      <div>
-                          <label class="custom-control custom-checkbox">
-                            <input type="checkbox" class="checkbox" formControlName="remember">
-                            <span class="custom-control-indicator"></span>
-                            <span class="custom-control-description small text-dark">Remember me</span>
-                          </label>
-                      </div>
                       <input type="submit" class="fadeIn fourth" id="btnLogin" [disabled]="!loginForm.valid" value="Log In">
                   </div>
-
                 </form>
               </div>
-
               </div>
-
             </div>
           </div>
         </div>

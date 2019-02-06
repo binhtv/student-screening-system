@@ -1,49 +1,40 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" routerLink="/"> STUDENT SYSTEM</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a routerLink="/"><span class="glyphicon glyphicon-home"> </span> Home</a></li>
-
-        <li *ngIf="userIsAuthenticated && isRole===1" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"> </span> Admin
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-              <li><a [routerLink]="['admin', 'create-staff']">Add Staff</a></li>
-              <li><a [routerLink]="['admin', 'create-question']">Add Question</a></li>
-              <li><a [routerLink]="['staff']">View Staff</a></li>
-            </ul>
-        </li>
-
-        <li *ngIf="userIsAuthenticated && isRole===2" class="dropdown">
-          <a [routerLink]="['staff', 'invite']"> <span class="glyphicon glyphicon-send"> </span> Send Invitation
-          </a>
-        </li>
-
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-phone-alt"> </span> Contact
-          </a>
-        </li>
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li *ngIf="!userIsAuthenticated"> <a [routerLink]="['admin', 'login']"> <span class="glyphicon glyphicon-log-in"></span> Login</a> </li>
-          <li *ngIf="userIsAuthenticated"> <a routerLink="/logout" (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
-
+<nav class="navbar navbar-default" *ngIf="userIsAuthenticated">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/"> STUDENT SYSTEM</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/"><span class="glyphicon glyphicon-home"> </span> Home</a></li>
+      <li *ngIf="isAdmin" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-cog"> </span> Admin
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a [routerLink]="['/admin', 'create-staff']">Add Staff</a></li>
+          <li><a [routerLink]="['/admin', 'create-question']">Add Question</a></li>
+          <li><a [routerLink]="['/admin', 'staffs']">View Staff</a></li>
+        </ul>
+      </li>
+      <li *ngIf="isAdmin"><a [routerLink]="['/admin', 'exams']">Review Exams</a></li>
 
-    <!-- <div class="centered">
-      <img src="assets/img/welcome.jpg" alt='welcome' id="bg">
-    </div> -->
-  </nav>
+      <li *ngIf="isStaff" class="dropdown">
+        <a [routerLink]="['/staff', 'invite']"> <span class="glyphicon glyphicon-send"> </span> Send Invitation
+        </a>
+      </li>
+      <li *ngIf="isStaff" class="dropdown">
+        <a [routerLink]="['/staff', 'invitations']"> <span class="glyphicon glyphicon-list"> </span> Inviations
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="userIsAuthenticated"> <a routerLink="/logout" (click)="onLogout()"><span class="glyphicon glyphicon-log-out"></span>
+          Logout</a></li>
+    </ul>
 
-  <router-outlet></router-outlet>
+  </div>
+</nav>
 
-  <footer class="footer">
-    <p>&copy; 2019 Binh, Pheakdey & Petros</p>
-  </footer>
+<router-outlet></router-outlet>
 
-
-
+<footer class="footer" *ngIf="userIsAuthenticated">
+  <p>&copy; 2019 Binh, Pheakdey & Petros</p>
+</footer>

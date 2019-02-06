@@ -5,9 +5,6 @@ import { Router } from '@angular/router';
 import { LoginResponse } from 'src/app/shared/models/login-response';
 import { Subject } from 'rxjs';
 
-// import { environment } from '../../../environments/environment';
-// const BACKEND_URL = environment.apiUrl + '/users';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,56 +18,48 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  // login(user) {
-  //   return this.http.post(API_URLS.API_LOGIN, user);
-  // }
-
   login(user) {
     this.http.post(API_URLS.API_LOGIN, user)
       .subscribe((response: LoginResponse) => {
         const token = response.token;
         if (token) {
-          this.router.navigate(['/']);
           const role = response.role;
           const expiresInDuration = response.expiresIn;
-          this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log('Expired: ' + expirationDate);
-          this.saveAuthData(token, expirationDate, response.userId);
-          if (role === 'admin') {
-            this.isRole = 1;
-            this.authStatusListenerRole.next(1);
-            this.router.navigate(['/admin']);
-          } else {
-            this.isRole = 2;
-            this.authStatusListenerRole.next(2);
-            this.router.navigate(['/staff/invite']);
-          }
+          this.saveAuthData(token, expirationDate, response.userId, role);
+          this.router.navigate(['/']);
+          window.location.reload();
         }
-
       },
       error => {
         return console.log(error);
       });
   }
 
-  getAuthStatusListener() {
-    return this.authStatusListener.asObservable();
-  }
-
-  getAuthStatusListenerRole() {
-    return this.authStatusListenerRole.asObservable();
-  }
-
   getIsAuth() {
-    return this.isAuthenticated;
+    //return this.isAuthenticated;
+    return localStorage.getItem('token') !== null && !this.isExpired();
   }
 
   getIsRole() {
     return this.isRole;
+  }
+
+  isAdmin() {
+    return localStorage.getItem('role') === 'admin';
+  }
+
+  isStaff() {
+    return localStorage.getItem('role') === 'staff';
+  }
+
+  isExpired() {
+    const expiration = localStorage.getItem('expiration');
+    const expire = new Date(expiration);
+    return expire <= new Date();
   }
 
   logout() {
@@ -83,25 +72,20 @@ export class AuthService {
     this.clearAuthData();
     //this.userId = null;
     this.router.navigate(['/']);
+    window.location.reload();
   }
 
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
+    localStorage.removeItem('role');
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+  private saveAuthData(token: string, expirationDate: Date, userId: string, role: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
     localStorage.setItem('userId', userId);
+    localStorage.setItem('role', role);
   }
-
-  private setAuthTimer(duration: number) {
-    console.log('Setting timer: ' + duration);
-    this.tokenTimer = setTimeout(() => {
-      this.logout();
-    }, duration * 1000);
-  }
-
 }

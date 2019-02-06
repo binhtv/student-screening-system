@@ -89,4 +89,21 @@ router.route('/update-exam/:id')
 			});
 		});
 	});
+
+// find all user role permission as staff	
+router.route('/staff-list').get((req, resp) => {
+	User.find({role: 'staff'})
+		.then(result => {
+			return resp.status(200).json({
+				code: 1,
+				data: result
+			})
+		})
+		.catch(error => {
+			return resp.status(500).json({
+				code: 0,
+				error: error
+			})
+		})
+});
 module.exports = router;

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../../shared/services/admin.service';
-import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-managing-staff',
@@ -25,7 +24,7 @@ export class ManagingStaffComponent implements OnInit {
   register() {
     this.admistaff.createAdmissionStaff(this.admissionstaff.value).subscribe(resp => {
       console.log(resp);
-      this.router.navigate(['/staff']);
+      this.router.navigate(['/admin', 'staffs']);
     });
   }
 }
