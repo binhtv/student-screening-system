@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { AppStore } from '../../redux/app.store';
 import { LoadStudents } from 'src/app/redux/actions/actions';
 import { StaffService } from '../../shared/services/staff.service';

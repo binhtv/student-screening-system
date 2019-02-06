@@ -11,6 +11,7 @@ module.exports = (req, res, next) => {
         console.log(token);
         const payload = jwt.verify(token, examTokenSecret);
         req.student = payload;
+        req.student.token = token;
         next();
     } catch (error) {
         console.log(error);
