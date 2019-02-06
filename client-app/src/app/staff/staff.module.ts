@@ -4,14 +4,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StaffService } from '../shared/services/staff.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
 	declarations: [InvitationComponent, DashboardComponent],
-	imports: [CommonModule, 
+	imports: [
+    CommonModule,
 		ReactiveFormsModule,
-		CKEditorModule,
+    CKEditorModule,
+    FormsModule,
 		RouterModule.forChild([
 		{ path: '', component: DashboardComponent },
 		{ path: 'invite', component: InvitationComponent }

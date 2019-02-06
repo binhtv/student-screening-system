@@ -23,7 +23,6 @@ router.route('/create-question').post((req, resp) => {
 
 router.route('/create-staff')
 	.post((req, resp) => {
-
 		bcrypt.hash(req.body.password, 10).then(password => {
 			const staff = req.body;
 			staff.status = 1;
@@ -41,7 +40,6 @@ router.route('/create-staff')
 				})
 			})
 		});
-
 	});
 
 module.exports = router;
