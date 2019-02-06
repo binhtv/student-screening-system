@@ -6,6 +6,12 @@ const { check, validationResult } = require('express-validator/check');
 const User = require("./../models/user");
 const checkAuth = require('./../middlewares/check-authentication');
 
+const dotenv = require('dotenv');
+dotenv.config();
+const {
+	USER_TOKEN_SECRET: userTokenSecret,
+} = process.env;
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -33,8 +39,8 @@ router.post('/login', function(req, res, next) {
               }
 
               const token = jwt.sign(
-                  {email: fetchUser.email, userId: fetchUser._id},
-                  "jfjsLJKLJ#JK28499*HFHHFl4&&48934hkHF8457Y48jHKJK#4797234",
+                  {email: fetchUser.email, userId: fetchUser._id, role: fetchUser.role},
+                  userTokenSecret,
                   { expiresIn: "1h" }
               );
 

@@ -8,6 +8,9 @@ const cors = require('cors');
 
 const checkAuth = require('./middlewares/check-authentication');
 const checkStudent = require('./middlewares/check-exam-token');
+const checkRoleStaff = require('./middlewares/check-role-staff');
+const checkRoleAdmin = require('./middlewares/check-role-admin');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const studentsRouter = require('./routes/students');
@@ -45,7 +48,7 @@ app.use('*', cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/students', checkStudent, studentsRouter)
-app.use('/staffs', checkAuth, staffsRouter);
-app.use('/admin', checkAuth, adminsRouter);
+app.use('/staffs', checkAuth, checkRoleStaff, staffsRouter);
+app.use('/admin', checkAuth, checkRoleAdmin, adminsRouter);
 
 module.exports = app;

@@ -90,8 +90,9 @@ router.route('/update-exam/:id')
 		});
 	});
 
-router.route('/load-questions').get((req, resp) => {
-	Question.find({})
+// find all user role permission as staff	
+router.route('/staff-list').get((req, resp) => {
+	User.find({role: 'staff'})
 		.then(result => {
 			return resp.status(200).json({
 				code: 1,
@@ -104,6 +105,21 @@ router.route('/load-questions').get((req, resp) => {
 				error: error
 			})
 		})
+});
+
+router.route('/load-questions').get((req, resp) => {
+	Question.find({}).then(result => {
+		return resp.status(200).json({
+			code: 1,
+			data: result
+		})
+	})
+	.catch(error => {
+		return resp.status(500).json({
+			code: 0,
+			error: error
+		})
+	})
 });
 
 router.put("/update-question", (req, res, next) => {

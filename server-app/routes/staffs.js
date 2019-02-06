@@ -4,6 +4,9 @@ const Student = require('../models/student');
 const Exam = require('../models/exam');
 const { getStudentByEmails } = require('../services/student');
 const { getActiveQuestionCount, getRandomQuestions } = require('../services/question');
+const {
+	loadExams
+} = require('../services/exam');
 const User = require('../models/user');
 
 
@@ -111,23 +114,6 @@ router.route('/send-invitation')
 		}
 	});
 
-// find all user role permission as staff	
-router.route('/staff-list').get((req, resp) => {
-	User.find({role: 'staff'})
-		.then(result => {
-			return resp.status(200).json({
-				code: 1,
-				data: result
-			})
-		})
-		.catch(error => {
-			return resp.status(500).json({
-				code: 0,
-				error: error
-			})
-		})
-});
-
 
 
 router.put("/staff-update", (req, res, next) => {
@@ -139,4 +125,18 @@ router.put("/staff-update", (req, res, next) => {
 	});
   });
 
+router.route('/get-invitations')
+  .get((req, resp) => {
+	  loadExams().then(exams => {
+		  return resp.status(200).json({
+			  code: 1,
+			  data: exams
+		  })
+	  }).catch(err => {
+		  return resp.status(500).json({
+			  code: 0,
+			  data: null
+		  })
+	  })
+  });
 module.exports = router;
