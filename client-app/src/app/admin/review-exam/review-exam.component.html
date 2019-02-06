@@ -1,9 +1,24 @@
 <div style="width: 70%; margin: auto">
-    <div class="form-group" *ngFor="let question of (exam|async)?.questions;">
+    <div>
+      <h3>By {{(exam|async)?.studentEmail}}</h3>
+      <div [ngClass]="{success: (exam|async)?.status==='pass', error: (exam|async)?.status==='fail'}">Status: {{(exam|async)?.status}}</div>
+    </div>
+    <div class="form-group" *ngFor="let question of (exam|async)?.questions; let num = index;">
       <h3>{{num + 1}}. {{question.title}}</h3>
       <div class="help-block">{{question.question}}</div>
-      <ace-editor theme="monokai" mode="javascript" style=" min-height: 150px; overflow: auto;"></ace-editor>
+      <p>There are {{question.answers.length}} snapshot(s)</p>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="firstSnapShot(num)" [disabled]="snapshotIndexes[num] === 1">First snapshot</button>&nbsp;
+        <button class="btn btn-default" (click)="previousSnapShot(num)" [disabled]="snapshotIndexes[num] === 1">Previous snapshot</button>&nbsp;
+        <button class="btn btn-default" (click)="nextSnapShot(num)" [disabled]="snapshotIndexes[num] === question.answers.length">Next snapshot</button>&nbsp;
+        <button class="btn btn-primary" (click)="showFinalSnapshot(num)" [disabled]="snapshotIndexes[num] === question.answers.length">Show final</button>
+      </div>
+      <ace-editor [readOnly]="true" theme="monokai" mode="javascript" style=" min-height: 150px; overflow: auto;" [text]="question.answers[snapshotIndexes[num] - 1]"></ace-editor>
     </div>
     <div class="form-group">
+      <div *ngIf="successMessage != ''" class="success">{{successMessage}}</div>
+      <div *ngIf="errorMessage != ''" class="error">{{errorMessage}}</div>
+      <button class="btn btn-success" (click)="changeStatus('pass')" [disabled]="sending">{{sending?'Making':'Make'}} a Pass</button>&nbsp;
+      <button class="btn btn-danger" (click)="changeStatus('fail')" [disabled]="sending">{{sending?'Making':'Make'}}  a Fail</button>
     </div>
 </div>

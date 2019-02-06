@@ -8,6 +8,11 @@ export const staff = (state: any = [], action: AppActions) => {
                 ...state,
                 students: action.payload
             };
+        case ActionTypes.STAFF_LOAD_INVITATIONS:
+            return {
+                ...state,
+                invitations: action.payload
+            }
         default: 
             return state;
     }

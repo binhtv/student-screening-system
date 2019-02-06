@@ -8,6 +8,19 @@ export const admin = (state: any = [], action: AppActions) => {
                 ...state,
                 exams: action.payload
             };
+        case ActionTypes.ADMIN_LOAD_EXAM:
+            return {
+                ...state,
+                exam: action.payload
+            }
+        case ActionTypes.ADMIN_CHANGE_EXAM_STATUS:
+            return {
+                ...state,
+                exam: {
+                    ...state.exam,
+                    status: action.payload
+                }
+            }
         default: 
             return state;
     }
