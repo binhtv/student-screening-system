@@ -8,6 +8,7 @@ import { StaffService } from '../../shared/services/staff.service';
 import { ApiResponse } from 'src/app/shared/models/api-response';
 import { MustSelectStudentValidator } from 'src/app/shared/validator/must-select-student.validator';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invitation',
@@ -25,7 +26,7 @@ export class InvitationComponent implements OnInit {
   private subscription: Subscription;
 
   constructor(private store: Store<AppStore>, private staffService: StaffService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private router: Router) {
     this.students = store.select(store => store.staff.students);
     this.inviteForm = this.formBuilder.group({
       checkAll: [false, []],
@@ -41,6 +42,10 @@ export class InvitationComponent implements OnInit {
         this.store.dispatch(new LoadStudents(resp.data));
       } else {
         //this.store.dispatch(new Error(students));
+      }
+    }, err => {
+      if(err.status == 401) {
+        this.router.navigate(['/401']);
       }
     });
 

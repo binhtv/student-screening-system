@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const checkAuth = require('./middlewares/check-authentication');
+const checkStudent = require('./middlewares/check-exam-token');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const studentsRouter = require('./routes/students');
@@ -42,8 +44,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('*', cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/students', studentsRouter)
-app.use('/staffs', staffsRouter);
-app.use('/admin', adminsRouter);
+app.use('/students', checkStudent, studentsRouter)
+app.use('/staffs', checkAuth, staffsRouter);
+app.use('/admin', checkAuth, adminsRouter);
 
 module.exports = app;
