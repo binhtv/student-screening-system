@@ -4,46 +4,38 @@
     <label for="exampleInputEmail1">First Name</label>
     <input formControlName="firstName" type="text" class="form-control" id="firstname" aria-describedby="FirstNameHelp"
       placeholder="Enter First Name">
+       <div *ngIf="firstName.errors && firstName.errors.required && (firstName.dirty || firstName.touched) " class="error">
+          First Name is required!
+        </div> 
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Last Name</label>
     <input formControlName="lastName" type="text" class="form-control" id="lastname" aria-describedby="LastNameHelp"
       placeholder="Enter Last Name">
+      <div *ngIf="lastName.errors && lastName.errors.required && (lastName.dirty || lastName.touched)" class="error">
+          Last Name is required!
+        </div> 
   </div>
 
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
       placeholder="Enter email">
+      <div *ngIf="email.errors && email.errors.required && (email.dirty || email.touched)" class="error">
+          Email is required!
+        </div> 
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <div *ngIf="password.errors && password.errors.required && (password.dirty || password.touched)" class="error">
+        Password is required!
+      </div> 
+      <div *ngIf="password.errors && password.errors.minlength && (password.dirty || password.touched)" class="error">
+          Password Required & min length is 3
+        </div>
   </div>
   <button type="submit" class="btn btn-primary" (click)="register()">Create Staff</button>
 </form>
 
-
-<!-- <section style="width:80%; margin:auto">
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Hire Date</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let staff of staffs'>
-        <td>{{ staff.fristName }}</td>
-        <td>{{staff.lastName }}</td>
-        <td>{{ staff.email }}</td>
-        <td>{{ staff.hiredate}}</td>
-        <td><button style="width: 100px" class="btn btn-primary" (click)='[deletStaff(staff.firstname)]'>Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</section> -->

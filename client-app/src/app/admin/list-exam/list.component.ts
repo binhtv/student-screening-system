@@ -38,7 +38,6 @@ export class ListExamComponent implements OnInit {
   }
 
   publishResult($event, examId) {
-    debugger;
     this.adminService.publishExamResult(examId).subscribe((resp: ApiResponse) => {
       if(resp.code === 1) {
         $event.target.parentNode.innerHTML = '<span class="success">Sent</span>';

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class CreatingExamComponent implements OnInit {
   questionForm: FormGroup;
-  constructor(private fb: FormBuilder, private adminService: AdminService) { }
+  constructor(private fb: FormBuilder, private adminService: AdminService, private router: Router) { }
 
   ngOnInit() {
     this.questionForm = this.fb.group({
@@ -25,6 +25,7 @@ export class CreatingExamComponent implements OnInit {
     newQuestion.status = true;
     this.adminService.createQuestion(newQuestion).subscribe(resp => {
       console.log(resp);
+      this.router.navigate(['admin/question']);
     });
   }
 

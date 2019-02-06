@@ -10,8 +10,9 @@
           <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a [routerLink]="['/admin', 'create-staff']">Add Staff</a></li>
-          <li><a [routerLink]="['/admin', 'create-question']">Add Question</a></li>
           <li><a [routerLink]="['/admin', 'staffs']">View Staff</a></li>
+          <li><a [routerLink]="['/admin', 'create-question']">Add Question</a></li>
+          <li><a [routerLink]="['/admin', 'question']">View Questions</a></li>
         </ul>
       </li>
       <li *ngIf="isAdmin"><a [routerLink]="['/admin', 'exams']">Review Exams</a></li>
