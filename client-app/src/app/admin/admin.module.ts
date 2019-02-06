@@ -5,7 +5,7 @@ import { routing } from './adminRoutes';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin.component';
-import { ManagingStaffComponent} from './managing-staff/managing-staff.component';
+import { ManagingStaffComponent} from './managing-staff/create-staff.component';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { ManagingStaffComponent} from './managing-staff/managing-staff.component
     CreatingExamComponent,
     LoginComponent,
     AdminComponent,
-    ManagingStaffComponent,   
+    ManagingStaffComponent
   ],
   exports: [
     CreatingExamComponent,

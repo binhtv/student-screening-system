@@ -29,6 +29,7 @@
     "jquery": "^3.3.1",
     "ng2-ace-editor": "^0.3.9",
     "ngx-countdown": "^3.1.0",
+    "ngrx": "^2.0.1",
     "rxjs": "^6.4.0",
     "tslib": "^1.9.0",
     "zone": "^0.3.4",

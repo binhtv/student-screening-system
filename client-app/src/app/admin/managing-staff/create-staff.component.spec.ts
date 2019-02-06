@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManagingStaffComponent } from './managing-staff.component';
+import { ManagingStaffComponent } from './create-staff.component';
 
 describe('ManagingStaffComponent', () => {
   let component: ManagingStaffComponent;

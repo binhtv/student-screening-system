@@ -4,6 +4,8 @@ const Student = require('../models/student');
 const Exam = require('../models/exam');
 const { getStudentByEmails } = require('../services/student');
 const { getActiveQuestionCount, getRandomQuestions } = require('../services/question');
+const User = require('../models/user');
+
 
 const router = express.Router();
 
@@ -108,5 +110,24 @@ router.route('/send-invitation')
 			resp.status(200).json('nothing sent');
 		}
 	});
+
+// find all user role permission as staff	
+router.route('/staff-list').get((req, resp) => {
+	User.find({role: 'staff'})
+		.then(result => {
+			return resp.status(200).json({
+				code: 1,
+				data: result
+			})
+		})
+		.catch(error => {
+			return resp.status(500).json({
+				code: 0,
+				error: error
+			})
+		})
+});
+
+
 
 module.exports = router;

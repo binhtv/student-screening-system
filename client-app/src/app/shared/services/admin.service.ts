@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { API_URLS } from './endpoints';
+import { Question } from '../models/question';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,26 +22,16 @@ export class AdminService {
       headers: headers
     });
   }
+
   public createQuestion(question: Question):  Observable<any> {
     return this.request(question);
   }
-exam: Question[] = []; 
-  public getQuestions() {
-    
-    this.http.get<any>('http://localhost:8000/exam').subscribe((res) => {
-      res.forEach(element => {
-        console.log("element " + JSON.stringify(element));// js value to json string
-        this.exam.push(element);
-      });
-    });
 
-    return this.exam;
+  public createAdmissionStaff(staff: User): Observable<any> {
+    return this.http.post(API_URLS.API_ADMIN_NEW_STAFF, staff);
   }
-}
-export interface Question {
 
-  title: String,
-  question: String,
-  examnumber: Number
-
+  loadStaffs() {
+    return this.http.get(API_URLS.API_STAFF_LIST);
+  }
 }
