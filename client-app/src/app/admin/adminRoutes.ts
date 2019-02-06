@@ -6,7 +6,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { AdminComponent } from './admin.component';
 import { ReviewExamComponent } from './review-exam/review-exam.component';
 import { ListExamComponent } from './list-exam/list.component';
-import { ListquestionsComponent } from './listquestions/listquestions.component'
+import { ListquestionsComponent } from './list-questions/list-questions.component'
 import { ListStaffComponent } from './list-staff/list-staff.component';
 
 export const routes: Routes = [
