@@ -9,7 +9,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { ReviewExamComponent } from './review-exam/review-exam.component';
 import { ListExamComponent } from './list-exam/list.component';
 import { DurationToHoursPipe } from '../shared/pipes/durationToHours.pipe';
-import { ListquestionsComponent } from './listquestions/listquestions.component';
+import { ListquestionsComponent } from './list-questions/list-questions.component';
 import { ListStaffComponent } from './list-staff/list-staff.component';
 import { FilterByEmail } from '../shared/pipes/filterByEmail.pipe';
 

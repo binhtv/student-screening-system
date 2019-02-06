@@ -6,8 +6,8 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-listquestions',
-  templateUrl: './listquestions.component.html',
-  styleUrls: ['./listquestions.component.scss']
+  templateUrl: './list-questions.component.html',
+  styleUrls: ['./list-questions.component.scss']
 })
 export class ListquestionsComponent implements OnInit {
   questions;
