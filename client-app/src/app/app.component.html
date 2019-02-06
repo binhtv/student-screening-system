@@ -15,7 +15,7 @@
           <li><a [routerLink]="['/admin', 'question']">View Questions</a></li>
         </ul>
       </li>
-      <li *ngIf="isAdmin"><a [routerLink]="['/admin', 'exams']">Review Exams</a></li>
+      <li *ngIf="isAdmin"><a [routerLink]="['/admin', 'exams']"> <span class="glyphicon glyphicon-list-alt"> </span>  Review Exams</a></li>
 
       <li *ngIf="isStaff" class="dropdown">
         <a [routerLink]="['/staff', 'invite']"> <span class="glyphicon glyphicon-send"> </span> Send Invitation
@@ -36,6 +36,6 @@
 
 <router-outlet></router-outlet>
 
-<footer class="footer" *ngIf="userIsAuthenticated">
+<footer class="footer footer-botton" *ngIf="userIsAuthenticated">
   <p>&copy; 2019 Binh, Pheakdey & Petros</p>
 </footer>
