@@ -1,4 +1,5 @@
-const ROOT_URL = 'http://localhost:3000';
+import { environment } from '../../../environments/environment';
+const ROOT_URL = environment.apiUrl;
 export const API_URLS = {
   API_STUDENT_LIST: `${ROOT_URL}/staffs/student-list`,
   API_STAFF_UPDATE: `${ROOT_URL}/staffs/staff-update`,

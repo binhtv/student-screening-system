@@ -58,7 +58,7 @@ export class ListExamComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
   get searchEmail() {
