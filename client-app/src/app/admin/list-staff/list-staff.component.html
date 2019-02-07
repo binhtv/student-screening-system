@@ -4,7 +4,7 @@
     <hr>
 
     <!-- <form [formGroup]="staffForm" (ngSubmit)="onSubmit()"> -->
-    <form (ngSubmit)="onSubmit()">
+    <form>
       <table class="table table-striped">
         <thead>
             <tr>
@@ -23,15 +23,6 @@
               <td> {{ user.email }} </td>
               <td> {{ user.firstName }} </td>
               <td> {{ user.lastName }} </td>
-              <!-- <td>
-                  <span *ngIf="!user.status" class="glyphicon glyphicon glyphicon-minus-sign red"> </span>
-                  <span *ngIf="user.status" class="glyphicon glyphicon glyphicon-check green"> </span>
-                  {{ user.status }}
-              </td> -->
-              <!-- <td>
-                <input data-toggle="modal" data-target="#exampleModal" name="status" [(ngModel)]="user.status" *ngIf="!user.status" type="checkbox" class="form-check-input" (change)="onUserSelectChange(user.email, $event.target.checked)" >
-                <input data-toggle="modal" data-target="#exampleModal" name="status" [(ngModel)]="user.status" *ngIf="user.status" type="checkbox" class="form-check-input" checked="checked" (change)="onUserSelectChange(user.email, $event.target.checked)">
-              </td> -->
               <td>
                   <input *ngIf="user.status" type="checkbox" checked="checked" (change)="onUserSelectChange(user.email, $event.target.checked)">
                   <input *ngIf="!user.status" type="checkbox" (change)="onUserSelectChange(user.email, $event.target.checked)">

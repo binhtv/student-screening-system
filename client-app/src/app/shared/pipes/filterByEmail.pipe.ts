@@ -7,7 +7,6 @@ import { Exam } from '../models/exam';
 })
 export class FilterByEmail implements PipeTransform {
     transform(items: Exam[], filter: string): any {
-		debugger;
         if (!items || !filter) {
             return items;
         }

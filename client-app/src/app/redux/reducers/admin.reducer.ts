@@ -1,7 +1,7 @@
 
 import { ActionTypes, AppActions } from '../actions/actions';
 
-export const admin = (state: any = [], action: AppActions) => {
+export function admin(state: any = [], action: AppActions){
     switch (action.type) {
         case ActionTypes.ADMIN_LOAD_EXAMS:
             return {
