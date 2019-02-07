@@ -3,9 +3,9 @@
     <h1 class="centered1"> Welcome to Online Student Screening System </h1>
     <hr>
     <br>
-    <li *ngIf="!userIsAuthenticated">
+    <div *ngIf="!userIsAuthenticated">
         <a [routerLink]="['login']" class="a_demo_four">  Click Here to Login </a>
-    </li>
+    </div>
   </div>
 </div>
 
