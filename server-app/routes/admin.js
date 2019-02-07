@@ -160,4 +160,13 @@ router.put("/update-question", (req, res, next) => {
 	});
 });
 
+router.put("/staff-update", (req, res, next) => {
+	const userStatus = {
+		status: req.body.status
+	}
+	User.updateOne({ email: req.body.email }, userStatus).then(result => {
+	  res.status(200).json({ message: "Update successful!" });
+	});
+  });
+
 module.exports = router;

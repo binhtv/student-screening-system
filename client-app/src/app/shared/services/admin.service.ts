@@ -41,13 +41,12 @@ export class AdminService {
         email: email,
         status: status
       };
-      this.http.put(API_URLS.API_STAFF_UPDATE, user)
-        .subscribe(response => {
-          alert('Successfully Save');
-        }, error => {
-          alert('Unsuccessfully Save');
-        });
-
+      this.http.put(API_URLS.API_ADMIN_UPDATE_STAFF_STATUS, user)
+          .subscribe(response => {
+              alert('Successfully Save');
+          }, error => {
+              alert('Unsuccessfully Save');
+          });
   }
 
   public loadExams() {
@@ -65,7 +64,7 @@ export class AdminService {
   public publishExamResult(examId) {
     return this.http.post(`${API_URLS.API_ADMIN_PUBLISH_RESULT}`, {examId});
   }
-  
+
   public loadQuestions(){
     return this.http.get(API_URLS.API_ADMIN_LOAD_QUESTIONS);
   }

@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 // User Login 
 router.post('/login', function(req, res, next) {
   let fetchUser;
-  User.findOne({email: req.body.email})
+  User.findOne({email: req.body.email, status: true})
           .then(user => {
             if(!user){
               return res.status(401).json({
