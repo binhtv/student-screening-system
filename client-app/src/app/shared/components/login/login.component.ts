@@ -30,6 +30,5 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const login = { email: this.loginForm.value.email, password: this.loginForm.value.password };
     this.authService.login(login);
-
   }
 }

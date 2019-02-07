@@ -23,12 +23,12 @@
                 <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
                   <div class="img-center">
                       <div>
-                          <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="Email">
-                          <div *ngIf="!loginForm.get('email').valid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="error">Oops, you missed this one.</div>
+                          <input type="text" id="login" class="fadeIn second" formControlName="email" placeholder="Email" required email>
+                          <div *ngIf="!loginForm.get('email').valid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="error">Oops, Please enter a valid email!</div>
                       </div>
                       <div>
                           <input type="password" id="password" class="fadeIn third" formControlName="password" autocomplete="new-password" placeholder="Password">
-                          <div class="invalid-feedback error" *ngIf="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">Enter your password too!</div>
+                          <div class="invalid-feedback error" *ngIf="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">Please enter a valid email!</div>
                       </div>
                       <input type="submit" class="fadeIn fourth" id="btnLogin" [disabled]="!loginForm.valid" value="Log In">
                   </div>
