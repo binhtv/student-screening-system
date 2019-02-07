@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,27 +13,12 @@ export class AppComponent implements OnInit, OnDestroy {
   isRole = 0;
   isAdmin = false;
   isStaff = false;
-  private authListenerSubs: Subscription;
-  private authListenerSubsRole: Subscription;
-
-  constructor(private authService: AuthService ) { }
+  constructor(private authService: AuthService, private router: ActivatedRoute ) { }
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.isAdmin = this.authService.isAdmin();
     this.isStaff = this.authService.isStaff();
-    // this.isRole = this.authService.getIsRole();
-    // this.authListenerSubs = this.authService
-    // .getAuthStatusListener()
-    // .subscribe(isAuthenticated => {
-    //     this.userIsAuthenticated = isAuthenticated;
-    // });
-
-    // this.authListenerSubsRole = this.authService
-    // .getAuthStatusListenerRole()
-    // .subscribe(isAuthenticatedRole => {
-    //   this.isRole = isAuthenticatedRole;
-    // });
   }
 
   onLogout() {
@@ -41,7 +26,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.authListenerSubs.unsubscribe();
   }
 
 }

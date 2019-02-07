@@ -273,3 +273,9 @@ input[type=text]:placeholder, input[type=password]:placeholder{
 #icon {
   width:60%;
 }
+
+.footer-login {
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 150px);
+}
