@@ -19,7 +19,7 @@ export class ExamComponent implements OnInit {
   exam: Observable<Exam>;
   examForm: FormGroup;
   examData: Exam;
-  sending: boolean = false;
+  sending: any = false;
   totalTime: number = 60 * 60 * 2;//Two hours
   notifyAt: number = 15 * 60;
   private subscription: Subscription;
@@ -105,7 +105,7 @@ export class ExamComponent implements OnInit {
     });
   }
 
-  lessTimeMore(number) {
+  lessTimeMore() {
     alert('Hurry up, you have not much time to do!');
   }
 

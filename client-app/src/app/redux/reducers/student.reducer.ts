@@ -1,7 +1,7 @@
 
 import { ActionTypes, AppActions } from '../actions/actions';
 
-export const student = (state: any = [], action: AppActions) => {
+export function student(state: any = [], action: AppActions) {
     switch (action.type) {
         case ActionTypes.STUDENT_LOAD_EXAM:
             return {
