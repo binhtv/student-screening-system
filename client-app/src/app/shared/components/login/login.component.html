@@ -30,6 +30,7 @@
                           <input type="password" id="password" class="fadeIn third" formControlName="password" autocomplete="new-password" placeholder="Password">
                           <div class="invalid-feedback error" *ngIf="!loginForm.get('password').valid && (loginForm.get('password').dirty || loginForm.get('password').touched)">Please enter a valid email!</div>
                       </div>
+                      <div class="error" *ngIf="errorMessage != ''">{{errorMessage}}</div>
                       <input type="submit" class="fadeIn fourth" id="btnLogin" [disabled]="!loginForm.valid" value="Log In">
                   </div>
                 </form>

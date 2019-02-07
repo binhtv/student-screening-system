@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   userIsAuthenticated = false;
+  errorMessage: String = '';
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = formBuilder.group({
@@ -25,10 +26,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loginForm.valueChanges.subscribe(data => {
+     this.errorMessage = '';
+    });
   }
 
   onSubmit() {
     const login = { email: this.loginForm.value.email, password: this.loginForm.value.password };
-    this.authService.login(login);
+    this.authService.login(login, (error) => {
+      if (error.status === 401) {
+        this.errorMessage = 'Invalid Login';
+      }
+    });
   }
 }

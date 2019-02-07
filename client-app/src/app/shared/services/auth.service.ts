@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(user) {
+  login(user, callback) {
     this.http.post(API_URLS.API_LOGIN, user)
       .subscribe((response: LoginResponse) => {
         const token = response.token;
@@ -35,6 +35,7 @@ export class AuthService {
         }
       },
       error => {
+        callback(error);
         return console.log(error);
       });
   }
