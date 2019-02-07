@@ -87,17 +87,6 @@ router.route('/send-invitation')
 		}
 	});
 
-
-
-router.put("/staff-update", (req, res, next) => {
-	const userStatus = {
-		status: req.body.status
-	}
-	User.updateOne({ email: req.body.email }, userStatus).then(result => {
-	  res.status(200).json({ message: "Update successful!" });
-	});
-  });
-
 router.route('/get-invitations')
   .get((req, resp) => {
 	  loadExams().then(exams => {

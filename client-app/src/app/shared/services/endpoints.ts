@@ -2,17 +2,17 @@ import { environment } from '../../../environments/environment';
 const ROOT_URL = environment.apiUrl;
 export const API_URLS = {
   API_STUDENT_LIST: `${ROOT_URL}/staffs/student-list`,
-  API_STAFF_UPDATE: `${ROOT_URL}/staffs/staff-update`,
 	API_STAFF_NEW_INVITATION: `${ROOT_URL}/staffs/send-invitation`,
 	API_STAFF_LOAD_INVITATIONS: `${ROOT_URL}/staffs/get-invitations`,
-	
+
   API_ADMIN_LOAD_EXAMS: `${ROOT_URL}/admin/load-exams`,
 	API_ADMIN_LOAD_EXAM: `${ROOT_URL}/admin/load-exam`,
 	API_ADMIN_UPDATE_EXAM_STATUS: `${ROOT_URL}/admin/update-exam`,
 	API_ADMIN_NEW_QUESTION: `${ROOT_URL}/admin/create-question`,
 	API_ADMIN_NEW_STAFF: `${ROOT_URL}/admin/create-staff`,
 	API_ADMIN_STAFF_LIST: `${ROOT_URL}/admin/staff-list`,
-	API_ADMIN_PUBLISH_RESULT: `${ROOT_URL}/admin/publish-result`,
+  API_ADMIN_PUBLISH_RESULT: `${ROOT_URL}/admin/publish-result`,
+  API_ADMIN_UPDATE_STAFF_STATUS: `${ROOT_URL}/admin/staff-update`,
 
 	API_LOGIN: `${ROOT_URL}/users/login`,
 
