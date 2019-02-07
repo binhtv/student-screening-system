@@ -9,6 +9,7 @@ import { AdminService } from '../../shared/services/admin.service';
 })
 export class ManagingStaffComponent implements OnInit {
   admissionstaff: FormGroup;
+  errorMessage: String = '';
 
   constructor(private fb: FormBuilder, private router: Router, private admistaff: AdminService) { }
 
@@ -19,12 +20,17 @@ export class ManagingStaffComponent implements OnInit {
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
+
+    this.admissionstaff.valueChanges.subscribe(data => {
+      this.errorMessage = '';
+    });
   }
 
   register() {
     this.admistaff.createAdmissionStaff(this.admissionstaff.value).subscribe(resp => {
-      console.log(resp);
       this.router.navigate(['/admin', 'staffs']);
+    }, error => {
+      this.errorMessage = 'Staff already existed!!!';
     });
   }
 

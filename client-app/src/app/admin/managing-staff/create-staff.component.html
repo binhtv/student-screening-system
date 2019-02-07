@@ -6,7 +6,7 @@
       placeholder="Enter First Name">
        <div *ngIf="firstName.errors && firstName.errors.required && (firstName.dirty || firstName.touched) " class="error">
           First Name is required!
-        </div> 
+        </div>
   </div>
 
   <div class="form-group">
@@ -15,7 +15,7 @@
       placeholder="Enter Last Name">
       <div *ngIf="lastName.errors && lastName.errors.required && (lastName.dirty || lastName.touched)" class="error">
           Last Name is required!
-        </div> 
+        </div>
   </div>
 
   <div class="form-group">
@@ -24,18 +24,19 @@
       placeholder="Enter email">
       <div *ngIf="email.errors && email.errors.required && (email.dirty || email.touched)" class="error">
           Email is required!
-        </div> 
+        </div>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
     <div *ngIf="password.errors && password.errors.required && (password.dirty || password.touched)" class="error">
         Password is required!
-      </div> 
+      </div>
       <div *ngIf="password.errors && password.errors.minlength && (password.dirty || password.touched)" class="error">
           Password Required & min length is 3
         </div>
   </div>
+  <div class="error" *ngIf="errorMessage!= ''">{{errorMessage}}</div>
   <button type="submit" class="btn btn-primary" (click)="register()">Create Staff</button>
 </form>
 
