@@ -1,8 +1,116 @@
 <div class="row justify-content-center">
   <div class="col-md-12 text-center">
-    <h1>HOME: Add course info, group, profess and the modify link below based on the role</h1>
+    <h1 class="centered1"> Welcome to Online Student Screening System </h1>
+    <hr>
+    <br>
     <li *ngIf="!userIsAuthenticated">
-        <a [routerLink]="['login']"> <span class="glyphicon glyphicon-log-in"> </span> Login </a>
+        <a [routerLink]="['login']" class="a_demo_four">  Click Here to Login </a>
     </li>
   </div>
 </div>
+
+<div class="container" >
+    <div class="row">
+
+        <div class="col-xs-3" *ngIf="userIsAuthenticated && isAdmin">
+            <div class="box">
+                <div class="icon">
+                    <div class="image"><span class="glyphicon glyphicon-plus-sign btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title">Add Question</h3>
+                        <div class="more">
+                            <a [routerLink]="['/admin', 'create-question']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+        <div class="col-xs-3" *ngIf="userIsAuthenticated && isAdmin">
+            <div class="box">
+                <div class="icon">
+                    <div class="image4"><span class="glyphicon glyphicon-list btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title"> View Questions</h3>
+                        <div class="more">
+                            <a [routerLink]="['/admin', 'question']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-3" *ngIf="userIsAuthenticated && isAdmin">
+            <div class="box">
+                <div class="icon">
+                    <div class="image3"><span class="glyphicon glyphicon-user btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title"> View Staffs </h3>
+                        <div class="more">
+                            <a [routerLink]="['/admin', 'staffs']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+        <div class="col-xs-3" *ngIf="userIsAuthenticated && isAdmin">
+            <div class="box">
+                <div class="icon">
+                    <div class="image2"><span class="glyphicon glyphicon-list-alt btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title">Review Exam </h3>
+                        <div class="more">
+                            <a [routerLink]="['/admin', 'exams']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+
+        <div class="col-xs-6" *ngIf="userIsAuthenticated && isStaff">
+            <div class="box">
+                <div class="icon">
+                    <div class="image"><span class="glyphicon glyphicon-list-alt btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title"> Send Invitation </h3>
+                        <div class="more">
+                            <a [routerLink]="['/staff', 'invite']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+
+        <div class="col-xs-6" *ngIf="userIsAuthenticated && isStaff">
+            <div class="box">
+                <div class="icon">
+                    <div class="image1"><span class="glyphicon glyphicon-list-alt btn-lg white"></span></div>
+                    <div class="info">
+                        <h3 class="title">View Result </h3>
+                        <div class="more">
+                            <a [routerLink]="['/staff', 'invitations']" title="Title Link"><i class="fa fa-plus"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
