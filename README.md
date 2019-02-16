@@ -2,7 +2,7 @@
 
 
 ## Student Screening System
-A screening application for students to apply and study programming at a computer science university
+A screening application for students to apply and study programming at a computer science University
 ## Course information
 ### Professor **Asaad Saad**
 ### Group 1
